@@ -1,4 +1,24 @@
 object Dependencies {
+
+    object MokoMVVM {
+        private const val version = "0.14.0"
+        const val core = "dev.icerock.moko:mvvm-core:$version"
+        const val flow =  "dev.icerock.moko:mvvm-flow:$version"
+        const val livedata = "dev.icerock.moko:mvvm-livedata:$version"
+        const val state =  "dev.icerock.moko:mvvm-state:$version"
+        const val livedata_resources = "dev.icerock.moko:mvvm-livedata-resources:$version"
+        const val flow_resources = "dev.icerock.moko:mvvm-flow-resources:$version"
+        object Android {
+            const val flow_compose = "dev.icerock.moko:mvvm-flow-compose:$version"
+            const val livedata_compose = "dev.icerock.moko:mvvm-livedata-compose:$version"
+            const val livedata_material = "dev.icerock.moko:mvvm-livedata-material:$version"
+            const val livedata_glide = "dev.icerock.moko:mvvm-livedata-glide:$version"
+            const val livedata_swiperefresh = "dev.icerock.moko:mvvm-livedata-swiperefresh:$version"
+            const val databinding = "dev.icerock.moko:mvvm-databinding:$version"
+            const val viewbinding = "dev.icerock.moko:mvvm-viewbinding:$version"
+        }
+    }
+
     object Kodein {
         const val core = "org.kodein.di:kodein-di:7.1.0"
     }
@@ -19,7 +39,6 @@ object Dependencies {
     }
     object Android {
         const val gradlePlugin = "com.android.tools.build:gradle:7.2.2"
-        const val composeActivity = "androidx.activity:activity-compose:1.5.1"
 
         object Compose {
             private const val version = "1.3.1"
@@ -30,6 +49,7 @@ object Dependencies {
             const val fondation = "androidx.compose.foundation:foundation:$version"
             const val material = "androidx.compose.material:material:$version"
             const val activity_compose = "androidx.activity:activity-compose:$version_activity"
+            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
         }
     }
     object Ktor {
@@ -42,6 +62,5 @@ object Dependencies {
         const val serialization = "io.ktor:ktor-client-serialization:$version"
         const val logging = "io.ktor:ktor-client-logging:$version"
         const val android = "io.ktor:ktor-client-android:$version"
-        const val okhttp = "io.ktor:ktor-client-okhttp:$version"
     }
 }
