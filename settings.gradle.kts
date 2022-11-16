@@ -15,7 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Secret_Santa"
 include(":androidApp")
-include(":shared")
 include(":common:core")
 include(":common:app:api")
 include(":common:app:data")

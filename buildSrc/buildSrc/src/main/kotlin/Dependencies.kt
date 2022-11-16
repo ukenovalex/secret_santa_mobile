@@ -1,22 +1,8 @@
 object Dependencies {
+    object Compose {
+        private const val version = "1.2.0-beta01"
+        const val gradlePlugin = "org.jetbrains.compose:compose-gradle-plugin:$version"
 
-    object MokoMVVM {
-        private const val version = "0.14.0"
-        const val core = "dev.icerock.moko:mvvm-core:$version"
-        const val flow =  "dev.icerock.moko:mvvm-flow:$version"
-        const val livedata = "dev.icerock.moko:mvvm-livedata:$version"
-        const val state =  "dev.icerock.moko:mvvm-state:$version"
-        const val livedata_resources = "dev.icerock.moko:mvvm-livedata-resources:$version"
-        const val flow_resources = "dev.icerock.moko:mvvm-flow-resources:$version"
-        object Android {
-            const val flow_compose = "dev.icerock.moko:mvvm-flow-compose:$version"
-            const val livedata_compose = "dev.icerock.moko:mvvm-livedata-compose:$version"
-            const val livedata_material = "dev.icerock.moko:mvvm-livedata-material:$version"
-            const val livedata_glide = "dev.icerock.moko:mvvm-livedata-glide:$version"
-            const val livedata_swiperefresh = "dev.icerock.moko:mvvm-livedata-swiperefresh:$version"
-            const val databinding = "dev.icerock.moko:mvvm-databinding:$version"
-            const val viewbinding = "dev.icerock.moko:mvvm-viewbinding:$version"
-        }
     }
 
     object Kodein {

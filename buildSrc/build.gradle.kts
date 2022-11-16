@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation(Dependencies.Android.gradlePlugin)
+    implementation(Dependencies.Compose.gradlePlugin)
     implementation(Dependencies.Kotlin.gradlePlugin)
     implementation(Dependencies.Kotlin.Serialization.gradlePlugin)
 }

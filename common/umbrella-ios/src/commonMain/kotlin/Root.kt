@@ -1,2 +1,1 @@
-class Root {
-}
+class Root
