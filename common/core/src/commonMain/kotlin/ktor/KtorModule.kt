@@ -35,7 +35,7 @@ val ktorModule = DI.Module("ktorModule") {
             }
 
             defaultRequest {
-                url("http://10.0.2.2:8000/api/")
+                url("http://localhost:8000/api/")
                 header("Content-Type", "application/json; charset=UTF-8")
             }
         }

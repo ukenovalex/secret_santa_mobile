@@ -1,8 +1,14 @@
 object Dependencies {
+
+    object MVI {
+        private const val version = "0.11"
+        const val core = "com.adeo:kviewmodel:$version"
+        const val compose = "com.adeo:kviewmodel-compose:$version"
+    }
+
     object Compose {
         private const val version = "1.2.0-beta01"
         const val gradlePlugin = "org.jetbrains.compose:compose-gradle-plugin:$version"
-
     }
 
     object Kodein {

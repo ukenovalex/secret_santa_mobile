@@ -1,4 +1,4 @@
 package auth
 
-sealed class AuthAction {
+class AuthAction {
 }
