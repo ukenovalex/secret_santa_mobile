@@ -48,6 +48,7 @@ dependencies {
     implementation(Dependencies.Android.Compose.material)
     implementation(Dependencies.Android.Compose.activity_compose)
     implementation(Dependencies.Android.Compose.viewModel)
+    implementation(Dependencies.Android.Compose.Navigation.core)
 
     implementation(Dependencies.MVI.core)
     implementation(Dependencies.MVI.compose)

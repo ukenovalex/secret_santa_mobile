@@ -42,6 +42,11 @@ object Dependencies {
             const val material = "androidx.compose.material:material:$version"
             const val activity_compose = "androidx.activity:activity-compose:$version_activity"
             const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+
+            object Navigation {
+                private const val version = "2.5.3"
+                const val core = "androidx.navigation:navigation-compose:$version"
+            }
         }
     }
     object Ktor {

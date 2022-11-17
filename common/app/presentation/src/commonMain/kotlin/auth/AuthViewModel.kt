@@ -8,7 +8,6 @@ import kotlinx.coroutines.launch
 class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
     initialState = AuthState(email = "", password = "")
 ) {
-
     private val repository: AuthRepository = Inject.instance()
 
     override fun obtainEvent(viewEvent: AuthEvent) {
