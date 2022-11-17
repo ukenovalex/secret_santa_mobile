@@ -49,6 +49,9 @@ dependencies {
     implementation(Dependencies.Android.Compose.activity_compose)
     implementation(Dependencies.Android.Compose.viewModel)
 
+    implementation(Dependencies.MVI.core)
+    implementation(Dependencies.MVI.compose)
+
     implementation("com.google.android.material:material:1.7.0")
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

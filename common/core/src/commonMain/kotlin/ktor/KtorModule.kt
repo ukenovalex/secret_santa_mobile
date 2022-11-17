@@ -1,3 +1,4 @@
+import configuration.BaseURL
 import io.ktor.client.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -35,7 +36,7 @@ val ktorModule = DI.Module("ktorModule") {
             }
 
             defaultRequest {
-                url("http://localhost:8000/api/")
+                url(BaseURL)
                 header("Content-Type", "application/json; charset=UTF-8")
             }
         }
