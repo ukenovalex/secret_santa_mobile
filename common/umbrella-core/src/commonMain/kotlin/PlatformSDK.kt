@@ -5,6 +5,7 @@ import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.direct
 import org.kodein.di.singleton
+import user.userModule
 
 object PlatformSDK {
     fun init(
@@ -22,7 +23,8 @@ object PlatformSDK {
                 importAll(
                     umbrellaModule,
                     coreModule,
-                    authModule
+                    authModule,
+                    userModule
                 )
             }.direct
         )

@@ -64,5 +64,6 @@ object Dependencies {
         const val serialization = "io.ktor:ktor-client-serialization:$version"
         const val logging = "io.ktor:ktor-client-logging:$version"
         const val android = "io.ktor:ktor-client-android:$version"
+        const val auth = "io.ktor:ktor-client-auth:$version"
     }
 }

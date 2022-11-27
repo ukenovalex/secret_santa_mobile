@@ -8,5 +8,7 @@ import auth.models.RegisterResponse
 interface AuthRepository {
     suspend fun login(request: LoginRequest) : LoginResponse
     suspend fun register(request: RegisterRequest) : RegisterResponse
+    suspend fun validate() : Boolean
     fun saveToken(token: String)
+    fun logout()
 }

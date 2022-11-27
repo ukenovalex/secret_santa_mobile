@@ -31,4 +31,16 @@ class KtorAuthRemoteDataSource(val httpClient: HttpClient) {
             }
         }.body()
     }
+
+    suspend fun validate(): Boolean {
+        val response = httpClient.get {
+            url {
+                path("user/info")
+            }
+        }
+        if (response.status.isSuccess()) {
+            return true
+        }
+        return false
+    }
 }

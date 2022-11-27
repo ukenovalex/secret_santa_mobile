@@ -7,4 +7,5 @@ sealed class AuthEvent {
     data class InputPassword(val value: String): AuthEvent()
     data class ChangeLoginStatus(val value: LoginStatus): AuthEvent()
     object PressLogin : AuthEvent()
+    object Logout : AuthEvent()
 }

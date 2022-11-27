@@ -7,10 +7,24 @@ import com.adeo.kviewmodel.BaseSharedViewModel
 import di.Inject
 import kotlinx.coroutines.launch
 
+val initialState = AuthState(
+    email = "",
+    password = "",
+    loginStatus = LoginStatus.EMPTY,
+    isLoginExist = false
+)
+
 class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
-    initialState = AuthState(email = "", password = "", loginStatus = LoginStatus.EMPTY)
+    initialState = initialState
 ) {
     private val repository: AuthRepository = Inject.instance()
+
+    init {
+        viewModelScope.launch {
+            val response = repository.validate()
+            viewState = viewState.copy(isLoginExist = response)
+        }
+    }
 
     override fun obtainEvent(viewEvent: AuthEvent) {
         when (viewEvent) {
@@ -18,6 +32,7 @@ class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
             is AuthEvent.InputPassword -> inputPassword(viewEvent.value)
             is AuthEvent.PressLogin -> pressLogin()
             is AuthEvent.ChangeLoginStatus -> changeLoginStatus(viewEvent.value)
+            is AuthEvent.Logout -> logout()
         }
     }
 
@@ -42,6 +57,7 @@ class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
                 if (response.jwt.isNotBlank()) {
                     repository.saveToken(response.jwt)
                     changeLoginStatus(LoginStatus.SUCCESS)
+                    viewState = viewState.copy(isLoginExist = true)
                 }
             } catch (e: RuntimeException) {
                 changeLoginStatus(LoginStatus.ERROR)
@@ -52,5 +68,10 @@ class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
 
     private fun changeLoginStatus(loginStatus: LoginStatus) {
         viewState = viewState.copy(loginStatus = loginStatus)
+    }
+
+    private fun logout() {
+        viewState = initialState
+        repository.logout()
     }
 }

@@ -22,4 +22,15 @@ class AuthRepositoryImpl(
     override fun saveToken(token: String) {
         kVaultAuthRemoteDataSource.saveToken(token)
     }
+
+    override suspend fun validate(): Boolean {
+        if (!kVaultAuthRemoteDataSource.isTokenExist) {
+            return false
+        }
+        return ktorAuthRemoteDataSource.validate()
+    }
+
+    override fun logout() {
+        kVaultAuthRemoteDataSource.clear()
+    }
 }
