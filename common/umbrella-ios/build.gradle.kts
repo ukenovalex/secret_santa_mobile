@@ -7,7 +7,6 @@ plugins {
 version = "0.0.1"
 
 kotlin {
-
     cocoapods {
         summary = "SecretSanta iOS SDK"
         homepage = "https://flagstudio.ru"
@@ -32,6 +31,7 @@ kotlin {
                 implementation(project(":common:app:presentation"))
             }
         }
+
         iosMain {
             dependencies {
                 api(project(":common:core"))
