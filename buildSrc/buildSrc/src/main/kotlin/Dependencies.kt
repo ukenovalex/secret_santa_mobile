@@ -1,5 +1,10 @@
 object Dependencies {
 
+    object KVault {
+        private const val version = "1.10.0"
+        const val core = "com.liftric:kvault:$version"
+    }
+
     object MVI {
         private const val version = "0.11"
         const val core = "com.adeo:kviewmodel:$version"

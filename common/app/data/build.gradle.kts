@@ -11,6 +11,7 @@ kotlin {
             dependencies {
                 implementation(project(":common:app:api"))
                 implementation(project(":common:core"))
+                implementation(Dependencies.KVault.core)
             }
         }
     }
