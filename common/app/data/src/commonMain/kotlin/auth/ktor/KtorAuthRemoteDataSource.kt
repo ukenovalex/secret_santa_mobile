@@ -11,16 +11,20 @@ import io.ktor.http.*
 
 class KtorAuthRemoteDataSource(val httpClient: HttpClient) {
     suspend fun login(loginRequest: LoginRequest): LoginResponse {
-        val response = httpClient.post {
-            url {
-                path("user/login")
-                setBody(loginRequest)
+        try {
+            val response = httpClient.post {
+                url {
+                    path("user/login")
+                    setBody(loginRequest)
+                }
             }
+            if (response.status.isSuccess()) {
+                return response.body()
+            }
+            throw RuntimeException("Login invalid")
+        } catch (e: Exception) {
+            throw RuntimeException("Server Error")
         }
-        if (response.status.isSuccess()) {
-            return response.body()
-        }
-        throw RuntimeException("Login invalid")
     }
 
     suspend fun register(registerRequest: RegisterRequest): RegisterResponse {

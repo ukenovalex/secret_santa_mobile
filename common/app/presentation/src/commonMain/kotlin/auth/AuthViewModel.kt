@@ -11,7 +11,8 @@ val initialState = AuthState(
     email = "",
     password = "",
     loginStatus = LoginStatus.EMPTY,
-    isLoginExist = false
+    isLoginExist = false,
+    validForm = false
 )
 
 class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
@@ -38,10 +39,12 @@ class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
 
     private fun inputEmail(value: String) {
         viewState = viewState.copy(email = value)
+        validate()
     }
 
     private fun inputPassword(value: String) {
         viewState = viewState.copy(password = value)
+        validate()
     }
 
     private fun pressLogin() {
@@ -73,5 +76,20 @@ class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
     private fun logout() {
         viewState = initialState
         repository.logout()
+    }
+
+    private fun validate() {
+        viewState = viewState.copy(
+            validForm = validateEmail(viewState.email) && validatePassword(viewState.password)
+        )
+    }
+
+    private fun validateEmail(email: String): Boolean {
+        val EMAIL_REGEX = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
+        return EMAIL_REGEX.toRegex().matches(email);
+    }
+
+    private fun validatePassword(password: String): Boolean {
+        return password.length >= 5
     }
 }
