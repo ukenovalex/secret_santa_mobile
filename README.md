@@ -5,7 +5,7 @@
   - ``` brew install --cask zulu11 ```
   
 Устанавливаем CocoaPods
-  - ``` sudo gem install cocoapods ```
+  - ``` brew install cocoapods ```
 
 В корне проекта запускаем
   - Windows - ``` gradlew build ```
