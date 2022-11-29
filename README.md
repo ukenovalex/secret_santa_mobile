@@ -3,13 +3,19 @@
 Устанавливаем JDK
   - ``` brew tap homebrew/cask-versions ```
   - ``` brew install --cask zulu11 ```
+
+Устанавливаем Android Studio
+  - https://developer.android.com/studio
   
 Устанавливаем CocoaPods
   - ``` brew install cocoapods ```
-
+  
 В корне проекта запускаем
   - Windows - ``` gradlew build ```
   - Unix - ``` ./gradlew build ```
+  
+Либо вариант побыстрее 
+  - Запускаем проект в Android Studio и жмем на ```Gradle Sync``` (это слоник со стрелочкой в правом верхнем углу)
 
 Переходим в директорию iosApp
   - ``` cd iosApp ```
