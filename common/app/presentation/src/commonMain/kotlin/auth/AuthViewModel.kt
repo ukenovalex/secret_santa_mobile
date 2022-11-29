@@ -6,6 +6,7 @@ import auth.models.LoginResponse
 import com.adeo.kviewmodel.BaseSharedViewModel
 import di.Inject
 import kotlinx.coroutines.launch
+import utils.Utils
 
 val initialState = AuthState(
     email = "",
@@ -15,10 +16,11 @@ val initialState = AuthState(
     validForm = false
 )
 
-class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
+class AuthViewModel : BaseSharedViewModel<AuthState, Nothing, AuthEvent>(
     initialState = initialState
 ) {
     private val repository: AuthRepository = Inject.instance()
+    private val utils: Utils = Inject.instance()
 
     init {
         viewModelScope.launch {
@@ -80,16 +82,12 @@ class AuthViewModel : BaseSharedViewModel<AuthState, AuthAction, AuthEvent>(
 
     private fun validate() {
         viewState = viewState.copy(
-            validForm = validateEmail(viewState.email) && validatePassword(viewState.password)
+            validForm = utils.validateEmail(viewState.email) && utils.validatePassword(viewState.password)
         )
     }
 
-    private fun validateEmail(email: String): Boolean {
-        val EMAIL_REGEX = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
-        return EMAIL_REGEX.toRegex().matches(email);
-    }
-
-    private fun validatePassword(password: String): Boolean {
-        return password.length >= 5
+    override fun onCleared() {
+        super.onCleared()
+        viewState = initialState
     }
 }

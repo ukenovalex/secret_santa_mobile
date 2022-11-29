@@ -5,16 +5,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import auth.AuthViewModel
+import register.RegisterViewModel
 
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
     val authViewModel = AuthViewModel()
+    val registerViewModel = RegisterViewModel()
+
     NavHost(navController = navController, startDestination = "auth") {
-        composable("auth") { AuthScreen(viewModel = authViewModel, onNavigateToTest = {
-            navController.navigate("test")
+        composable("auth") { AuthScreen(viewModel = authViewModel, onNavigateToRegister = {
+            navController.navigate("register")
             authViewModel.clear()
         }) }
-        composable("test") { TestScreen() }
+        composable("register") { RegisterScreen(viewModel = registerViewModel) }
     }
 }
