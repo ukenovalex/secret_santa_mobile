@@ -11,7 +11,9 @@
   - Windows - ``` gradlew build ```
   - Unix - ``` ./gradlew build ```
 
-Переходим в директорию iosApp и запускаем следующую команду
+Переходим в директорию iosApp
+  - ``` cd iosApp ```
+Запускаем следующую команду
   - ``` pod install ```
 
 Затем
