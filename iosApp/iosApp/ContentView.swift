@@ -42,13 +42,13 @@ struct AuthView: View {
         VStack {
             if (!viewState.isLoginExist) {
                 Text("Authorization")
-                CommonTextField(hint: "Email", enabled: true) { newValue in
+                CommonTextField(label: "Name", hint: "Email", enabled: true) { newValue in
                     if (viewState.loginStatus != LoginStatus.empty) {
                         eventHandler(.ChangeLoginStatus(value: LoginStatus.empty))
                     }
                     eventHandler(.InputEmail(value: newValue))
                 }
-                CommonTextField(hint: "Password", enabled: true, isSecure: true) { newValue in
+                CommonTextField(label: "Password", hint: "", enabled: true, isSecure: true) { newValue in
                     if (viewState.loginStatus != LoginStatus.empty) {
                         eventHandler(.ChangeLoginStatus(value: LoginStatus.empty))
                     }
