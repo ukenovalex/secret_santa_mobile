@@ -14,26 +14,25 @@ import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
 
 @Composable
-fun AppButton(onClick: () -> Unit, title: String, disabled: Boolean) {
+fun SecondaryButton(
+    onClick: () -> Unit, title: String) {
     Button(
         onClick = {
-            if (!disabled) {
-                onClick()
-            }
+            onClick()
         },
         shape = RoundedCornerShape(10.dp),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = if (disabled) Colors.ButtonDisabledBackground else Colors.ButtonEnabledBackground
+            backgroundColor = Colors.SecondaryButtonBackground
         ),
         modifier = Modifier
             .padding(12.dp, 8.dp, 12.dp, 9.dp)
-            .width(150.dp)
+            .width(125.dp)
     ) {
         Text(
             text = title,
             fontFamily = Fonts.RobotoBold,
             fontSize = 20.sp,
-            color = Colors.TextColor,
+            color = Colors.SecondaryButtonTextColor,
         )
     }
 }

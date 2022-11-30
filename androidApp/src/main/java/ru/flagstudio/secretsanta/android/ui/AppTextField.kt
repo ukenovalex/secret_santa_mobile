@@ -16,7 +16,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ru.flagstudio.secretsanta.android.ui.theme.Color
+import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
 
 
@@ -27,7 +27,7 @@ fun AppTextField(
     label: String,
     placeholder: String,
     hidden: Boolean = false,
-    keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+    keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
 ) {
 
     var isFocused by remember {
@@ -37,7 +37,7 @@ fun AppTextField(
     Column {
         Text(
             text = label,
-            color = Color.TextColor,
+            color = Colors.TextColor,
             fontFamily = Fonts.RobotoMedium,
             fontSize = 16.sp
         )
@@ -45,14 +45,14 @@ fun AppTextField(
         BasicTextField(
             keyboardOptions = keyboardOptions,
             singleLine = true,
-            cursorBrush = SolidColor(Color.TextColor),
+            cursorBrush = SolidColor(Colors.TextColor),
             visualTransformation = if (hidden) {
                 PasswordVisualTransformation()
             } else VisualTransformation.None,
             modifier = Modifier
                 .drawBehind {
                     drawLine(
-                        color = Color.TextColor,
+                        color = Colors.TextColor,
                         start = Offset(0f, size.height),
                         end = Offset(size.width, size.height),
                         strokeWidth = 1.dp.toPx()
@@ -62,7 +62,7 @@ fun AppTextField(
                     isFocused = it.isFocused
                 },
             textStyle = TextStyle(
-                color = Color.TextColor,
+                color = Colors.TextColor,
                 fontFamily = Fonts.RobotoLight,
                 fontSize = 16.sp,
             ),
@@ -78,7 +78,7 @@ fun AppTextField(
                         if (value.isEmpty() && !isFocused) {
                             Text(
                                 text = placeholder,
-                                color = Color.TextColor,
+                                color = Colors.TextColor,
                                 fontFamily = Fonts.RobotoLight,
                                 fontSize = 16.sp,
                             )

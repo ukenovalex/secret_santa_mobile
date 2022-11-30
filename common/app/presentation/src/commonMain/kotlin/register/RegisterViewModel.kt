@@ -1,5 +1,8 @@
 package register
 
+import auth.AuthRepository
+import auth.models.LoginRequest
+import auth.models.LoginResponse
 import com.adeo.kviewmodel.BaseSharedViewModel
 import di.Inject
 import kotlinx.coroutines.launch
@@ -19,7 +22,8 @@ class RegisterViewModel : BaseSharedViewModel<RegisterState, Nothing, RegisterEv
     initialState = initialState
 ) {
 
-    private val repository: RegisterRepository = Inject.instance()
+    private val registerRepository: RegisterRepository = Inject.instance()
+    private val authRepository: AuthRepository = Inject.instance()
     private val utils: Utils = Inject.instance()
 
     override fun obtainEvent(viewEvent: RegisterEvent) {
@@ -50,18 +54,29 @@ class RegisterViewModel : BaseSharedViewModel<RegisterState, Nothing, RegisterEv
         viewModelScope.launch {
             try {
                 viewState = viewState.copy(status = RegisterStatus.LOADING)
-                repository.fetchRegister(
+                registerRepository.fetchRegister(
                     RegisterRequest(
                         name = viewState.name,
                         email = viewState.email,
                         password = viewState.password
                     )
                 )
+                fetchLogin(email = viewState.email, password = viewState.password)
                 viewState = viewState.copy(status = RegisterStatus.SUCCESS)
             } catch (e: RuntimeException) {
                 viewState = viewState.copy(status = RegisterStatus.ERROR)
                 println(e.message)
             }
+        }
+    }
+
+    private suspend fun fetchLogin(email: String, password: String) {
+        val response: LoginResponse = authRepository.login(LoginRequest(
+            email = email,
+            password = password
+        ))
+        if (response.jwt.isNotBlank()) {
+            authRepository.saveToken(response.jwt)
         }
     }
 
@@ -75,5 +90,9 @@ class RegisterViewModel : BaseSharedViewModel<RegisterState, Nothing, RegisterEv
 
     private fun validateName(name: String): Boolean {
         return name.length >= 3
+    }
+
+    override fun onCleared() {
+        viewState = initialState
     }
 }

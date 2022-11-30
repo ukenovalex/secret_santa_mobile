@@ -1,17 +1,12 @@
 package ru.flagstudio.secretsanta.android.screens
 
-import android.widget.Toast
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import auth.AuthEvent
 import com.adeo.kviewmodel.compose.observeAsState
 import register.RegisterEvent
 import register.RegisterViewModel
@@ -19,28 +14,23 @@ import register.model.RegisterStatus
 import ru.flagstudio.secretsanta.android.ui.AppButton
 import ru.flagstudio.secretsanta.android.ui.AppTextField
 import ru.flagstudio.secretsanta.android.ui.AppTitle
+import ru.flagstudio.secretsanta.android.ui.AuthContainer
 
 
 @Composable
-fun RegisterScreen(viewModel: RegisterViewModel) {
+fun RegisterScreen(
+    viewModel: RegisterViewModel,
+    navigateToRegistrationWish: () -> Unit,
+) {
     val state = viewModel.viewStates().observeAsState()
-    val focusManager = LocalFocusManager.current
 
-    if (state.value.status == RegisterStatus.SUCCESS) {
-        println("SUCEEEEEES")
+    LaunchedEffect (state.value.status) {
+        if (state.value.status == RegisterStatus.SUCCESS) {
+            navigateToRegistrationWish()
+        }
     }
 
-    Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(start = 12.dp, end = 12.dp)
-            .fillMaxSize(1f)
-            .pointerInput(Unit) {
-                detectTapGestures(onTap = {
-                    focusManager.clearFocus(true)
-                })
-            }
-    ) {
+    AuthContainer {
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxHeight(0.5f)
@@ -83,7 +73,7 @@ fun RegisterScreen(viewModel: RegisterViewModel) {
                 AppButton(
                     onClick = { viewModel.obtainEvent(RegisterEvent.PressRegister) },
                     title = "Done",
-                    disabled = !state.value.validForm
+                    disabled = !state.value.validForm,
                 )
             }
         }

@@ -1,17 +1,9 @@
 package ru.flagstudio.secretsanta.android.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import auth.AuthEvent
@@ -20,23 +12,13 @@ import com.adeo.kviewmodel.compose.observeAsState
 import ru.flagstudio.secretsanta.android.ui.AppButton
 import ru.flagstudio.secretsanta.android.ui.AppTextField
 import ru.flagstudio.secretsanta.android.ui.AppTitle
-import ru.flagstudio.secretsanta.android.ui.theme.Color
+import ru.flagstudio.secretsanta.android.ui.AuthContainer
 
 @Composable
 fun AuthScreen(viewModel: AuthViewModel, onNavigateToRegister: () -> Unit) {
     val state = viewModel.viewStates().observeAsState()
-    val focusManager = LocalFocusManager.current
-    Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(start = 12.dp, end = 12.dp)
-            .fillMaxSize(1f)
-            .pointerInput(Unit) {
-                detectTapGestures(onTap = {
-                    focusManager.clearFocus(true)
-                })
-            }
-    ) {
+
+    AuthContainer {
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxHeight(0.5f)
@@ -70,7 +52,7 @@ fun AuthScreen(viewModel: AuthViewModel, onNavigateToRegister: () -> Unit) {
                 AppButton(
                     onClick = { viewModel.obtainEvent(AuthEvent.PressLogin) },
                     title = "Login",
-                    disabled = !state.value.validForm
+                    disabled = !state.value.validForm,
                 )
                 AppButton(
                     onClick = { onNavigateToRegister() },

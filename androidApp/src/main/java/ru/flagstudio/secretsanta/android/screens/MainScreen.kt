@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import auth.AuthViewModel
 import register.RegisterViewModel
+import ru.flagstudio.secretsanta.android.navigation.Routes
 
 @Composable
 fun MainScreen() {
@@ -13,11 +14,15 @@ fun MainScreen() {
     val authViewModel = AuthViewModel()
     val registerViewModel = RegisterViewModel()
 
-    NavHost(navController = navController, startDestination = "auth") {
-        composable("auth") { AuthScreen(viewModel = authViewModel, onNavigateToRegister = {
-            navController.navigate("register")
+    NavHost(navController = navController, startDestination = Routes.Auth) {
+        composable(Routes.Auth) { AuthScreen(viewModel = authViewModel, onNavigateToRegister = {
+            navController.navigate(Routes.Register)
             authViewModel.clear()
         }) }
-        composable("register") { RegisterScreen(viewModel = registerViewModel) }
+        composable(Routes.Register) { RegisterScreen(viewModel = registerViewModel, navigateToRegistrationWish = {
+            navController.navigate(Routes.RegisterWish)
+            registerViewModel.clear()
+        }) }
+        composable(Routes.RegisterWish) { RegistrationWishScreen() }
     }
 }
