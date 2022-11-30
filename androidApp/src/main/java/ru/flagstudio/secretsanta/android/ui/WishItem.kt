@@ -1,6 +1,7 @@
 package ru.flagstudio.secretsanta.android.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,7 +15,7 @@ import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
 
 @Composable
-fun WishItem(text: String) {
+fun WishItem(text: String, deleteWish: () -> Unit) {
     Box(modifier = Modifier
         .clip(RoundedCornerShape(16.dp))
         .background(Colors.SecondaryButtonBackground)
@@ -24,6 +25,7 @@ fun WishItem(text: String) {
             top = 5.dp,
             bottom = 5.dp
         )
+        .clickable { deleteWish() }
     ) {
         Text(
             fontSize = 16.sp,

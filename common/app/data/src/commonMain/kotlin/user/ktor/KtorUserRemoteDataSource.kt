@@ -4,18 +4,58 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import user.models.AddWishRequest
+import user.models.AddWishResponse
 import user.models.FetchUserResponse
+import user.models.RemoveWishRequest
 
 class KtorUserRemoteDataSource(private val httpClient: HttpClient) {
     suspend fun fetch(): FetchUserResponse {
-        val response = httpClient.get {
-            url {
-                path("user/info")
+        try {
+            val response = httpClient.get {
+                url {
+                    path("user/info")
+                }
             }
+            if (response.status.isSuccess()) {
+                return response.body()
+            }
+            throw RuntimeException("KtorUserRemoteDataSource: Fetch User Invalid. Response: $response")
+        } catch (e: RuntimeException) {
+            throw RuntimeException("KtorUserRemoteDataSource: Server Error")
         }
-        if (response.status.isSuccess()) {
-            return response.body()
+    }
+
+    suspend fun addWish(request: AddWishRequest): AddWishResponse {
+        try {
+            val response = httpClient.post {
+                url {
+                    path("wish")
+                    setBody(request)
+                }
+            }
+            if (response.status.isSuccess()) {
+                return response.body()
+            }
+            throw RuntimeException("KtorUserRemoteDataSource: Add Wish Invalid. Response: $response")
+        } catch (e: RuntimeException) {
+            throw RuntimeException("KtorUserRemoteDataSource: Server Error")
         }
-        throw RuntimeException("KtorUserRemoteDataSource: Fetch User Invalid. Response: $response")
+    }
+    suspend fun removeWish(request: RemoveWishRequest) {
+        try {
+            val response = httpClient.delete {
+                url {
+                    path("wish")
+                    setBody(request)
+                }
+            }
+            if (response.status.isSuccess()) {
+                return
+            }
+            throw RuntimeException("KtorUserRemoteDataSource: Delete Wish Invalid. Response: $response")
+        } catch (e: RuntimeException) {
+            throw RuntimeException("KtorUserRemoteDataSource: Server Error")
+        }
     }
 }

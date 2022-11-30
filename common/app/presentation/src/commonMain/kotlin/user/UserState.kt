@@ -7,5 +7,6 @@ data class UserState(
     val email: String?,
     val name: String?,
     val isSanta: Boolean?,
-    val wishes: List<UserWish>?
+    val wishes: List<UserWish>?,
+    val currentWishValue: String,
 )
