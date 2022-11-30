@@ -58,7 +58,7 @@ AuthViewModel - ViewModel для авторизации. Содержит в с�
     }
     ```
   
-RegisterViewModel - ViewModel для авторизации. Содержит в себе:
+RegisterViewModel - ViewModel для регистрации. Содержит в себе:
   - RegisterState
     ```
     val name: String, // Имя пользователя
