@@ -18,7 +18,7 @@ import user.UserEvent
 import user.UserViewModel
 
 @Composable
-fun RegistrationWishScreen(viewModel: UserViewModel) {
+fun RegistrationWishScreen(viewModel: UserViewModel, navigateToCongrat: () -> Unit) {
 
     val state = viewModel.viewStates().observeAsState()
 
@@ -77,7 +77,7 @@ fun RegistrationWishScreen(viewModel: UserViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
         ) {
-            AppButton(onClick = { /*TODO*/ }, title = "Done", disabled = false)
+            AppButton(onClick = navigateToCongrat, title = "Done", disabled = false)
         }
     }
 }
