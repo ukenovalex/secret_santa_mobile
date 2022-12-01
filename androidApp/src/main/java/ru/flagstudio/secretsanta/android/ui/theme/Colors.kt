@@ -11,6 +11,9 @@ object Colors {
     val ButtonDisabledBackground = Color(0xFFBDBDBD)
     val ButtonEnabledBackground = Color(0xFF7DA736 )
     val SecondaryButtonBackground = Color(0xFFFEFDFB)
+    val SecondaryBackground = Color(0xFFFEFDFB)
+    val SelectedNavItem = Color(0xFF7DA736)
+    val UnselectedNavItem = Color(0xFFD6001C)
 }
 
 

@@ -6,4 +6,5 @@ object Routes {
     const val RegisterWish = "register_wish"
     const val Congrat = "congratulations"
     const val Profile = "profile"
+    const val ProfileWish = "profile_wish"
 }
