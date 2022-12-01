@@ -76,8 +76,16 @@ struct AuthView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+struct AuthScreen_Previews: PreviewProvider {
+
+    static var previews: some View {
+        var viewState = AuthState(
+            email: "test@test.test",
+            password: "",
+            loginStatus: LoginStatus.success,
+            isLoginExist: false,
+            validForm: false
+        )
+        AuthView(viewState: viewState) { event in}
+    }
 }
