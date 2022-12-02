@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 
 object Colors {
+    val AccentColor = Color(0xFFD6001C)
     val Background = Color(0xFFD6001C)
     val SecondaryButtonTextColor = Color(0xFFD6001C)
     val TextColor = Color(0xFFFEFDFB)

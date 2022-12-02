@@ -15,7 +15,7 @@ fun Host(navController: NavHostController) {
     val registerViewModel = RegisterViewModel()
     val userViewModel = UserViewModel()
 
-    NavHost(navController = navController, startDestination = Routes.RegisterWish) {
+    NavHost(navController = navController, startDestination = Routes.FirstScreen) {
         composable(Routes.Auth) {
             AuthScreen(viewModel = authViewModel, onNavigateToRegister = {
                 navController.navigate(Routes.Register)
@@ -48,5 +48,26 @@ fun Host(navController: NavHostController) {
         }
         composable(Routes.Profile) { ProfileScreen() }
         composable(Routes.ProfileWish) { ProfileWishScreen() }
+
+        composable(Routes.FirstScreen) {
+            FirstScreen(
+                viewModel = authViewModel,
+                navigateToProfile = {
+                    navController.navigate(Routes.Profile) {
+                        popUpTo(Routes.FirstScreen) {
+                            inclusive = true
+                        }
+                    }
+                },
+                navigateToLogin = {
+                    navController.navigate(Routes.Auth) {
+                        popUpTo(Routes.FirstScreen) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
+        }
+
     }
 }

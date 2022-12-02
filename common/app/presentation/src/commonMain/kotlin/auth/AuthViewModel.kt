@@ -12,7 +12,6 @@ val initialState = AuthState(
     email = "",
     password = "",
     loginStatus = LoginStatus.EMPTY,
-    isLoginExist = false,
     validForm = false
 )
 
@@ -22,12 +21,6 @@ class AuthViewModel : BaseSharedViewModel<AuthState, Nothing, AuthEvent>(
     private val repository: AuthRepository = Inject.instance()
     private val utils: Utils = Inject.instance()
 
-    init {
-        viewModelScope.launch {
-            val response = repository.validate()
-            viewState = viewState.copy(isLoginExist = response)
-        }
-    }
 
     override fun obtainEvent(viewEvent: AuthEvent) {
         when (viewEvent) {
@@ -36,6 +29,18 @@ class AuthViewModel : BaseSharedViewModel<AuthState, Nothing, AuthEvent>(
             is AuthEvent.PressLogin -> pressLogin()
             is AuthEvent.ChangeLoginStatus -> changeLoginStatus(viewEvent.value)
             is AuthEvent.Logout -> logout()
+            is AuthEvent.CheckLoginStatus -> checkLoginStatus()
+        }
+    }
+
+    private fun checkLoginStatus() {
+        viewModelScope.launch {
+            val response = repository.validate()
+            viewState = if (response) {
+                viewState.copy(loginStatus = LoginStatus.SUCCESS)
+            } else {
+                viewState.copy(loginStatus = LoginStatus.NOT_VERIFIED)
+            }
         }
     }
 
@@ -62,7 +67,6 @@ class AuthViewModel : BaseSharedViewModel<AuthState, Nothing, AuthEvent>(
                 if (response.jwt.isNotBlank()) {
                     repository.saveToken(response.jwt)
                     changeLoginStatus(LoginStatus.SUCCESS)
-                    viewState = viewState.copy(isLoginExist = true)
                 }
             } catch (e: RuntimeException) {
                 changeLoginStatus(LoginStatus.ERROR)
