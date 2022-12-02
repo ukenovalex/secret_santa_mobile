@@ -7,18 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import auth.AuthViewModel
-import register.RegisterViewModel
 import ru.flagstudio.secretsanta.android.R
 import ru.flagstudio.secretsanta.android.screens.*
 import ru.flagstudio.secretsanta.android.ui.theme.Colors
-import user.UserViewModel
-
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -48,7 +41,15 @@ fun Navigation() {
                 BottomNavBar(
                     items = bottomNavItems,
                     navController = navController,
-                    onItemClick = { navController.navigate(it.route) },
+                    onItemClick = { item ->
+                        navController.navigate(item.route) {
+                            navController.currentDestination?.route?.let {
+                                popUpTo(it)  {
+                                    inclusive = true
+                                }
+                            }
+                        }
+                    },
                     modifier = Modifier.height(80.dp)
                 )
             }
