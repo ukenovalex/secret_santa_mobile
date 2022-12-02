@@ -19,6 +19,12 @@ fun Host(navController: NavHostController) {
         composable(Routes.Auth) {
             AuthScreen(viewModel = authViewModel, onNavigateToRegister = {
                 navController.navigate(Routes.Register)
+            }, onNavigateToCongrat = {
+                navController.navigate(Routes.Congrat) {
+                    popUpTo(Routes.Auth) {
+                        inclusive = true
+                    }
+                }
                 authViewModel.clear()
             })
         }

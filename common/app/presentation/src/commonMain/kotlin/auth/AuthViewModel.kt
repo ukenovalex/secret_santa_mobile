@@ -35,11 +35,16 @@ class AuthViewModel : BaseSharedViewModel<AuthState, Nothing, AuthEvent>(
 
     private fun checkLoginStatus() {
         viewModelScope.launch {
-            val response = repository.validate()
-            viewState = if (response) {
-                viewState.copy(loginStatus = LoginStatus.SUCCESS)
-            } else {
-                viewState.copy(loginStatus = LoginStatus.NOT_VERIFIED)
+            try {
+                viewState = viewState.copy(loginStatus = LoginStatus.LOADING)
+                val response = repository.validate()
+                viewState = if (response) {
+                    viewState.copy(loginStatus = LoginStatus.SUCCESS)
+                } else {
+                    viewState.copy(loginStatus = LoginStatus.NOT_VERIFIED)
+                }
+            } catch (e: RuntimeException) {
+                viewState = viewState.copy(loginStatus = LoginStatus.ERROR)
             }
         }
     }

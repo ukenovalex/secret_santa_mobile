@@ -73,18 +73,29 @@ fun FirstScreen(
             modifier = Modifier.rotate(-3.73f)
         )
         Spacer(modifier = Modifier.height(48.dp))
-        Icon(
-            painter = painterResource(id = R.drawable.tap_icon),
-            contentDescription = "tap icon",
-            tint = Colors.AccentColor
-        )
-        Text(
-            text = "Tap here",
-            textAlign = TextAlign.Center,
-            color = Colors.AccentColor,
-            fontFamily = Fonts.Pacifico,
-            fontSize = 24.sp,
-        )
+        if (state.value.loginStatus == LoginStatus.EMPTY) {
+            Icon(
+                painter = painterResource(id = R.drawable.tap_icon),
+                contentDescription = "tap icon",
+                tint = Colors.AccentColor
+            )
+            Text(
+                text = "Tap here",
+                textAlign = TextAlign.Center,
+                color = Colors.AccentColor,
+                fontFamily = Fonts.Pacifico,
+                fontSize = 24.sp,
+            )
+        }
+        if (state.value.loginStatus == LoginStatus.LOADING) {
+            Text(
+                text = "Loading...",
+                textAlign = TextAlign.Center,
+                color = Colors.AccentColor,
+                fontFamily = Fonts.Pacifico,
+                fontSize = 24.sp,
+            )
+        }
         Spacer(modifier = Modifier.height(85.dp))
     }
 }

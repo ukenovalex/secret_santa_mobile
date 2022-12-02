@@ -3,12 +3,13 @@ package ru.flagstudio.secretsanta.android.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import auth.AuthEvent
 import auth.AuthViewModel
+import auth.model.LoginStatus
 import com.adeo.kviewmodel.compose.observeAsState
 import ru.flagstudio.secretsanta.android.ui.AppButton
 import ru.flagstudio.secretsanta.android.ui.AppTextField
@@ -16,8 +17,18 @@ import ru.flagstudio.secretsanta.android.ui.AppTitle
 import ru.flagstudio.secretsanta.android.ui.AuthContainer
 
 @Composable
-fun AuthScreen(viewModel: AuthViewModel, onNavigateToRegister: () -> Unit) {
+fun AuthScreen(
+    viewModel: AuthViewModel,
+    onNavigateToRegister: () -> Unit,
+    onNavigateToCongrat: () -> Unit
+) {
     val state = viewModel.viewStates().observeAsState()
+
+    LaunchedEffect(state.value.loginStatus) {
+        if (state.value.loginStatus == LoginStatus.SUCCESS) {
+            onNavigateToCongrat()
+        }
+    }
 
     AuthContainer {
         Column(
@@ -53,12 +64,12 @@ fun AuthScreen(viewModel: AuthViewModel, onNavigateToRegister: () -> Unit) {
                 AppButton(
                     onClick = { viewModel.obtainEvent(AuthEvent.PressLogin) },
                     title = "Login",
-                    disabled = !state.value.validForm,
+                    disabled = !state.value.validForm || state.value.loginStatus == LoginStatus.LOADING,
                 )
                 AppButton(
                     onClick = { onNavigateToRegister() },
                     title = "Register",
-                    disabled = false
+                    disabled = state.value.loginStatus == LoginStatus.LOADING
                 )
             }
         }
