@@ -16,7 +16,9 @@ struct AuthView: View {
         
     var body: some View {
         MainTemplate() {
-            Text("Hello there!")
+            CommonButton(action: {}) {
+                Text("View")
+            }
         }
     }
 }

@@ -15,6 +15,11 @@
 		6A85DC0829266B7F005A7AE3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A85DC0729266B7F005A7AE3 /* ViewModel.swift */; };
 		6A85DC0B29269F3F005A7AE3 /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A85DC0A29269F3F005A7AE3 /* CommonTextField.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		AD280D7E293B6A7300110042 /* MainTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD280D7D293B6A7300110042 /* MainTemplate.swift */; };
+		AD667E52293B5C2200776536 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD667E51293B5C2200776536 /* Colors.swift */; };
+		AD667E55293B5E3D00776536 /* AuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD667E54293B5E3D00776536 /* AuthScreen.swift */; };
+		AD667E57293B5EB300776536 /* UserProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD667E56293B5EB300776536 /* UserProfileScreen.swift */; };
+		ADC2DE99293B71B1000DCAA5 /* CommonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC2DE98293B71B1000DCAA5 /* CommonButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,11 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76E42DAB518CFBA326ACC72D /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
+		AD280D7D293B6A7300110042 /* MainTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTemplate.swift; sourceTree = "<group>"; };
+		AD667E51293B5C2200776536 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		AD667E54293B5E3D00776536 /* AuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreen.swift; sourceTree = "<group>"; };
+		AD667E56293B5EB300776536 /* UserProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileScreen.swift; sourceTree = "<group>"; };
+		ADC2DE98293B71B1000DCAA5 /* CommonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButton.swift; sourceTree = "<group>"; };
 		C7897A0361EB2808FE254055 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				6A85DC0A29269F3F005A7AE3 /* CommonTextField.swift */,
+				ADC2DE98293B71B1000DCAA5 /* CommonButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -99,6 +110,9 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				AD280D7C293B6A5C00110042 /* Templates */,
+				AD667E53293B5E2000776536 /* Screens */,
+				AD667E50293B5C0500776536 /* Extensions */,
 				6A85DC0929269F26005A7AE3 /* UI */,
 				6A85DC0429266A62005A7AE3 /* Utils */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -116,6 +130,31 @@
 				0C93AB2ED5521B9D9114AA45 /* Pods_iosApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD280D7C293B6A5C00110042 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				AD280D7D293B6A7300110042 /* MainTemplate.swift */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+		AD667E50293B5C0500776536 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD667E51293B5C2200776536 /* Colors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AD667E53293B5E2000776536 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				AD667E54293B5E3D00776536 /* AuthScreen.swift */,
+				AD667E56293B5EB300776536 /* UserProfileScreen.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,9 +253,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD667E55293B5E3D00776536 /* AuthScreen.swift in Sources */,
 				6A85DC0629266A7B005A7AE3 /* Flow.swift in Sources */,
+				AD667E57293B5EB300776536 /* UserProfileScreen.swift in Sources */,
+				AD667E52293B5C2200776536 /* Colors.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				6A85DC0829266B7F005A7AE3 /* ViewModel.swift in Sources */,
+				ADC2DE99293B71B1000DCAA5 /* CommonButton.swift in Sources */,
+				AD280D7E293B6A7300110042 /* MainTemplate.swift in Sources */,
 				6A85DC0B29269F3F005A7AE3 /* CommonTextField.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
