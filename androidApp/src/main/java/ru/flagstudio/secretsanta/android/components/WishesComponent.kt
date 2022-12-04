@@ -33,7 +33,7 @@ fun WishesComponent(viewModel: UserViewModel) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        AppTitle(text = "Расскажи какой подарок ты хотел бы получить")
+        AppTitle(text = "Расскажи о своем подарке мечты")
         Spacer(modifier = Modifier.height(62.dp))
         AppTextField(
             value = state.value.currentWishValue,

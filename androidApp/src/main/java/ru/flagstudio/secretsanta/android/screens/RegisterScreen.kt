@@ -24,13 +24,13 @@ fun RegisterScreen(
 ) {
     val state = viewModel.viewStates().observeAsState()
 
-    LaunchedEffect (state.value.status) {
+    LaunchedEffect(state.value.status) {
         if (state.value.status == RegisterStatus.SUCCESS) {
             navigateToRegistrationWish()
         }
     }
 
-    MainContainer {
+    MainContainer(paddingHorizontal = 12.dp) {
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxHeight(0.5f)

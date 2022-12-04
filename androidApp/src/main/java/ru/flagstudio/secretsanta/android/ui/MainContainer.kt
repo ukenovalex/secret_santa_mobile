@@ -10,17 +10,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ru.flagstudio.secretsanta.android.ui.theme.Colors
 
 @Composable
-fun MainContainer(Child: @Composable () -> Unit) {
+fun MainContainer(paddingHorizontal: Dp = 0.dp, Child: @Composable () -> Unit) {
     val focusManager = LocalFocusManager.current
     Column(
         verticalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
             .background(Colors.Background)
-            .padding(start = 12.dp, end = 12.dp)
+            .padding(start = paddingHorizontal, end = paddingHorizontal)
             .fillMaxSize()
             .pointerInput(Unit) {
                 detectTapGestures(onTap = {

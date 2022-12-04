@@ -30,7 +30,7 @@ fun AuthScreen(
         }
     }
 
-    MainContainer {
+    MainContainer(paddingHorizontal = 12.dp) {
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxHeight(0.5f)

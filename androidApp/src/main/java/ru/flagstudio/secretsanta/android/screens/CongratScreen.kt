@@ -2,17 +2,17 @@ package ru.flagstudio.secretsanta.android.screens
 
 import android.os.Handler
 import android.os.Looper
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Text
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -57,7 +57,7 @@ fun CongratScreen(navigateToProfile: () -> Unit) {
                 Text(
                     text = "Congratulations!",
                     fontFamily = Fonts.Pacifico,
-                    fontSize = 34.sp,
+                    fontSize = 42.sp,
                     color = Colors.TextColor
                 )
             }
