@@ -14,7 +14,7 @@ import register.model.RegisterStatus
 import ru.flagstudio.secretsanta.android.ui.AppButton
 import ru.flagstudio.secretsanta.android.ui.AppTextField
 import ru.flagstudio.secretsanta.android.ui.AppTitle
-import ru.flagstudio.secretsanta.android.ui.AuthContainer
+import ru.flagstudio.secretsanta.android.ui.MainContainer
 
 
 @Composable
@@ -30,7 +30,7 @@ fun RegisterScreen(
         }
     }
 
-    AuthContainer {
+    MainContainer {
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxHeight(0.5f)

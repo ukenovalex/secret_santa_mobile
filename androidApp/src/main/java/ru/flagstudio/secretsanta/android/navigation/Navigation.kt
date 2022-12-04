@@ -31,7 +31,7 @@ fun Navigation() {
         ),
     )
     Scaffold(
-        backgroundColor = Colors.Background,
+        backgroundColor = Colors.Transparent,
         bottomBar = {
             val backStackEntry = navController.currentBackStackEntryAsState()
             val isShowBottomBar = bottomNavItems.find {
@@ -44,13 +44,13 @@ fun Navigation() {
                     onItemClick = { item ->
                         navController.navigate(item.route) {
                             navController.currentDestination?.route?.let {
-                                popUpTo(it)  {
+                                popUpTo(it) {
                                     inclusive = true
                                 }
                             }
                         }
                     },
-                    modifier = Modifier.height(80.dp)
+                    modifier = Modifier.height(70.dp)
                 )
             }
         },

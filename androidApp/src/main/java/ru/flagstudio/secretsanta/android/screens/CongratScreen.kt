@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.flagstudio.secretsanta.android.R
+import ru.flagstudio.secretsanta.android.ui.MainContainer
 import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
 
@@ -41,32 +42,34 @@ fun CongratScreen(navigateToProfile: () -> Unit) {
         }
     }
 
-    Column(
-        verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
-    ) {
-
-        AnimatedVisibility(
-            visible = visible,
-            enter = fadeIn(animationSpec = tween(2000)),
-            exit = fadeOut(animationSpec = tween(2000))
+    MainContainer {
+        Column(
+            verticalArrangement = Arrangement.Bottom,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize()
         ) {
-            Text(
-                text = "Congratulations!",
-                fontFamily = Fonts.Pacifico,
-                fontSize = 48.sp,
-                color = Colors.TextColor
+
+            AnimatedVisibility(
+                visible = visible,
+                enter = fadeIn(animationSpec = tween(2000)),
+                exit = fadeOut(animationSpec = tween(2000))
+            ) {
+                Text(
+                    text = "Congratulations!",
+                    fontFamily = Fonts.Pacifico,
+                    fontSize = 48.sp,
+                    color = Colors.TextColor
+                )
+            }
+            Spacer(modifier = Modifier.height(84.dp))
+            Image(
+                painter = painterResource(id = R.drawable.christmas_tree),
+                contentDescription = "christmas tree",
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier.fillMaxWidth()
             )
+            Spacer(modifier = Modifier.height(48.dp))
         }
-        Spacer(modifier = Modifier.height(84.dp))
-        Image(
-            painter = painterResource(id = R.drawable.christmas_tree),
-            contentDescription = "christmas tree",
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(48.dp))
     }
 }
 

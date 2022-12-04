@@ -26,7 +26,7 @@ fun RegistrationWishScreen(viewModel: UserViewModel, navigateToCongrat: () -> Un
         viewModel.obtainEvent(UserEvent.GetUserInfo)
     }
 
-    AuthContainer {
+    MainContainer {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {

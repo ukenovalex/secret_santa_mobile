@@ -37,6 +37,12 @@ object Dependencies {
     object Android {
         const val gradlePlugin = "com.android.tools.build:gradle:7.2.2"
 
+        object ExoPlayer {
+            private const val version = "2.18.2"
+            const val core = "com.google.android.exoplayer:exoplayer-core:$version"
+            const val ui = "com.google.android.exoplayer:exoplayer-ui:$version"
+        }
+
         object Compose {
             private const val version = "1.3.1"
             private const val version_activity = "1.6.1"

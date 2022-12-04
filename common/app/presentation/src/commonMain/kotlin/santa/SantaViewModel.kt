@@ -30,7 +30,7 @@ class SantaViewModel : BaseSharedViewModel<SantaState, Nothing, SantaEvent>(
             try {
                 viewState = viewState.copy(fetchDataStatus = SantaDataStatus.LOADING)
                 val response = santaRepository.becomeSanta()
-                viewState = viewState.copy(giftedName = response.name)
+                viewState = viewState.copy(giftedName = response.name, isSanta = true)
             } catch (e: RuntimeException) {
                 viewState = viewState.copy(fetchDataStatus = SantaDataStatus.ERROR)
                 println(e.message)

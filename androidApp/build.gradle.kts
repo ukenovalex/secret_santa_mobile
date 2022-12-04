@@ -51,6 +51,9 @@ dependencies {
     implementation(Dependencies.Android.Compose.viewModel)
     implementation(Dependencies.Android.Compose.Navigation.core)
 
+    implementation(Dependencies.Android.ExoPlayer.core)
+    implementation(Dependencies.Android.ExoPlayer.ui)
+
     implementation(Dependencies.MVI.core)
     implementation(Dependencies.MVI.compose)
 

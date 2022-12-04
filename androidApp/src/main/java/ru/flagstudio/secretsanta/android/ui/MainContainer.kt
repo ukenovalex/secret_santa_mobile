@@ -1,5 +1,6 @@
 package ru.flagstudio.secretsanta.android.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,13 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
+import ru.flagstudio.secretsanta.android.ui.theme.Colors
 
 @Composable
-fun AuthContainer(Child: @Composable () -> Unit) {
+fun MainContainer(Child: @Composable () -> Unit) {
     val focusManager = LocalFocusManager.current
     Column(
         verticalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
+            .background(Colors.Background)
             .padding(start = 12.dp, end = 12.dp)
             .fillMaxSize()
             .pointerInput(Unit) {
