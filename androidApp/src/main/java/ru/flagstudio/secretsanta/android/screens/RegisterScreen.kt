@@ -35,15 +35,15 @@ fun RegisterScreen(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxHeight(0.5f)
         ) {
-            AppTitle("Introduce yourself, naughty kid!")
+            AppTitle("Хочешь подарок? Создай аккаунт!")
             Spacer(modifier = Modifier.height(24.dp))
             AppTextField(
                 value = state.value.name,
                 onValueChange = {
                     viewModel.obtainEvent(RegisterEvent.InputName(it))
                 },
-                label = "Name:",
-                placeholder = "Enter name..."
+                label = "Имя:",
+                placeholder = "Рождественский Валерий Ильич"
             )
             Spacer(modifier = Modifier.height(20.dp))
             AppTextField(
@@ -52,7 +52,7 @@ fun RegisterScreen(
                     viewModel.obtainEvent(RegisterEvent.InputEmail(it))
                 },
                 label = "E-mail:",
-                placeholder = "Enter e-mail...",
+                placeholder = "santa@flagstudio.ru",
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(20.dp))
@@ -61,8 +61,8 @@ fun RegisterScreen(
                 onValueChange = {
                     viewModel.obtainEvent(RegisterEvent.InputPassword(it))
                 },
-                label = "Password:",
-                placeholder = "Enter password...",
+                label = "Пароль:",
+                placeholder = "Твой секретик...",
                 hidden = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
 
@@ -71,8 +71,9 @@ fun RegisterScreen(
         Column(verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxHeight(0.5f)) {
             Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
                 AppButton(
+                    width = 180.dp,
                     onClick = { viewModel.obtainEvent(RegisterEvent.PressRegister) },
-                    title = "Done",
+                    title = "Хочу подарок",
                     disabled = !state.value.validForm,
                 )
             }

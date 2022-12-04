@@ -53,19 +53,21 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                 color = Colors.TextColor,
                 fontSize = 32.sp
             )
+            if (!state.value.isSanta) {
+                Spacer(modifier = Modifier.height(130.dp))
+                SecondaryButton(
+                    onClick = { viewModel.obtainEvent(SantaEvent.BecomeSanta) },
+                    title = "Вжух, и я санта",
+                    width = 250.dp
+                )
+            }
 
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Bottom,
         ) {
-            if (!state.value.isSanta) {
-                SecondaryButton(
-                    onClick = { viewModel.obtainEvent(SantaEvent.BecomeSanta) },
-                    title = "Become Santa",
-                    width = 250.dp
-                )
-            } else {
+             if (state.value.isSanta) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier

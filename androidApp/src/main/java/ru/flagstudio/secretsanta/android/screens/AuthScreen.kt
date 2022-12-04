@@ -35,7 +35,7 @@ fun AuthScreen(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxHeight(0.5f)
         ) {
-            AppTitle("Introduce yourself, naughty kid!")
+            AppTitle("Добро пожаловать, санта-малютка!")
             Spacer(modifier = Modifier.height(24.dp))
             AppTextField(
                 value = state.value.email,
@@ -43,7 +43,7 @@ fun AuthScreen(
                     viewModel.obtainEvent(AuthEvent.InputEmail(it))
                 },
                 label = "E-mail:",
-                placeholder = "Enter e-mail...",
+                placeholder = "santa@flagstudio.ru",
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             Spacer(modifier = Modifier.height(20.dp))
@@ -52,8 +52,8 @@ fun AuthScreen(
                 onValueChange = {
                     viewModel.obtainEvent(AuthEvent.InputPassword(it))
                 },
-                label = "Password:",
-                placeholder = "Enter password...",
+                label = "Пароль:",
+                placeholder = "Твой секретик...",
                 hidden = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
 
@@ -63,12 +63,12 @@ fun AuthScreen(
             Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
                 AppButton(
                     onClick = { viewModel.obtainEvent(AuthEvent.PressLogin) },
-                    title = "Login",
+                    title = "Войти",
                     disabled = !state.value.validForm || state.value.loginStatus == LoginStatus.LOADING,
                 )
                 AppButton(
                     onClick = { onNavigateToRegister() },
-                    title = "Register",
+                    title = "Создать",
                     disabled = state.value.loginStatus == LoginStatus.LOADING
                 )
             }

@@ -57,7 +57,7 @@ fun CongratScreen(navigateToProfile: () -> Unit) {
                 Text(
                     text = "Congratulations!",
                     fontFamily = Fonts.Pacifico,
-                    fontSize = 48.sp,
+                    fontSize = 34.sp,
                     color = Colors.TextColor
                 )
             }
