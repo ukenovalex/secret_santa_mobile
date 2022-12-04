@@ -6,6 +6,7 @@ import org.kodein.di.bind
 import org.kodein.di.direct
 import org.kodein.di.singleton
 import register.registerModule
+import santa.santaModule
 import user.userModule
 
 object PlatformSDK {
@@ -26,6 +27,7 @@ object PlatformSDK {
                     coreModule,
                     authModule,
                     userModule,
+                    santaModule,
                     registerModule,
                 )
             }.direct

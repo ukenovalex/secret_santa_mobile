@@ -9,13 +9,14 @@ import user.UserRepository
 class SantaViewModel : BaseSharedViewModel<SantaState, Nothing, SantaEvent>(
     initialState = SantaState(
         userName = "",
-        doneeName = null,
+        giftedName = null,
         isSanta = false,
         fetchDataStatus = SantaDataStatus.EMPTY
     )
 ) {
 
     private val userRepository: UserRepository = Inject.instance()
+    private val santaRepository: SantaRepository = Inject.instance()
 
     override fun obtainEvent(viewEvent: SantaEvent) {
         when(viewEvent) {
@@ -25,7 +26,16 @@ class SantaViewModel : BaseSharedViewModel<SantaState, Nothing, SantaEvent>(
     }
 
     private fun becomeSanta() {
-
+        viewModelScope.launch {
+            try {
+                viewState = viewState.copy(fetchDataStatus = SantaDataStatus.LOADING)
+                val response = santaRepository.becomeSanta()
+                viewState = viewState.copy(giftedName = response.name)
+            } catch (e: RuntimeException) {
+                viewState = viewState.copy(fetchDataStatus = SantaDataStatus.ERROR)
+                println(e.message)
+            }
+        }
     }
 
     private fun fetchSantaInfo() {
@@ -34,14 +44,18 @@ class SantaViewModel : BaseSharedViewModel<SantaState, Nothing, SantaEvent>(
                 viewState = viewState.copy(fetchDataStatus = SantaDataStatus.LOADING)
                 val response = userRepository.fetchUserInfo()
                 if (response.isSanta) {
-                    // TODO Request donee
-                } else {
-                    viewState = viewState.copy(userName = response.name, fetchDataStatus = SantaDataStatus.SUCCESS)
+                    fetchGiftedUser()
                 }
+                viewState = viewState.copy(userName = response.name, fetchDataStatus = SantaDataStatus.SUCCESS)
             } catch (e: RuntimeException) {
                 viewState = viewState.copy(fetchDataStatus = SantaDataStatus.ERROR)
                 println(e.message)
             }
         }
+    }
+
+    private suspend fun fetchGiftedUser() {
+        val response = santaRepository.fetchGiftedUser()
+        viewState = viewState.copy(giftedName = response.name, isSanta = true)
     }
 }

@@ -1,10 +1,7 @@
 package user
 
 import user.ktor.KtorUserRemoteDataSource
-import user.models.AddWishRequest
-import user.models.AddWishResponse
-import user.models.FetchUserResponse
-import user.models.RemoveWishRequest
+import user.models.*
 
 class UserRepositoryImpl(
     private val ktorUserRemoteDataSource: KtorUserRemoteDataSource

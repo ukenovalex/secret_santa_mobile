@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import auth.AuthViewModel
 import register.RegisterViewModel
 import ru.flagstudio.secretsanta.android.screens.*
+import santa.SantaViewModel
 import user.UserViewModel
 
 @Composable
@@ -14,6 +15,7 @@ fun Host(navController: NavHostController) {
     val authViewModel = AuthViewModel()
     val registerViewModel = RegisterViewModel()
     val userViewModel = UserViewModel()
+    val santaViewModel = SantaViewModel()
 
     NavHost(navController = navController, startDestination = Routes.FirstScreen) {
         composable(Routes.Auth) {
@@ -52,7 +54,7 @@ fun Host(navController: NavHostController) {
                 }
             })
         }
-        composable(Routes.Profile) { ProfileScreen() }
+        composable(Routes.Profile) { ProfileScreen(viewModel = santaViewModel) }
         composable(Routes.ProfileWish) { ProfileWishScreen() }
 
         composable(Routes.FirstScreen) {
