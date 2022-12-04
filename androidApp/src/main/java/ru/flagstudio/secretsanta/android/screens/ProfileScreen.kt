@@ -14,9 +14,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.adeo.kviewmodel.compose.observeAsState
+import org.kodein.di.DI
 import ru.flagstudio.secretsanta.android.R
-import ru.flagstudio.secretsanta.android.ui.AppTitle
 import ru.flagstudio.secretsanta.android.ui.SecondaryButton
 import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
@@ -46,10 +47,13 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                 .fillMaxWidth()
         ) {
             Spacer(modifier = Modifier.height(130.dp))
-            AppTitle(text = state.value.userName)
-            if (state.value.isSanta) {
-                AppTitle(text = "Your good kid is:")
-            }
+            Text(
+                fontFamily = Fonts.RobotoBold,
+                text = state.value.userName,
+                color = Colors.TextColor,
+                fontSize = 32.sp
+            )
+
         }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -62,16 +66,29 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                     width = 250.dp
                 )
             } else {
-                Text(
-                    textAlign = TextAlign.Center,
-                    text = state.value.giftedName ?: "",
-                    fontFamily = Fonts.Pacifico,
-                    fontSize = 48.sp,
-                    color = Colors.TextColor,
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
-                        .rotate(-3.92f)
                         .offset(y = 20.dp)
-                )
+                        .fillMaxWidth()
+                ) {
+                    Text(
+                        textAlign = TextAlign.Center,
+                        fontFamily = Fonts.Pacifico,
+                        text = "Твой послушный малыш:",
+                        color = Colors.TextColor,
+                        fontSize = 28.sp,
+                    )
+                    Text(
+                        textAlign = TextAlign.Center,
+                        text = state.value.giftedName ?: "",
+                        fontFamily = Fonts.Pacifico,
+                        fontSize = 48.sp,
+                        color = Colors.TextColor,
+                        modifier = Modifier
+                            .rotate(-3.92f)
+                    )
+                }
                 Row(
                     horizontalArrangement = Arrangement.End,
                     modifier = Modifier.fillMaxWidth()
@@ -89,11 +106,4 @@ fun ProfileScreen(viewModel: SantaViewModel) {
         }
     }
 
-}
-
-@Preview
-@Composable
-fun ProfileScreen_Preview() {
-    val vm = SantaViewModel()
-    ProfileScreen(viewModel = vm)
 }

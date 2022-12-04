@@ -1,5 +1,6 @@
 package user
 
+import user.models.FetchUserStatus
 import user.models.UserWish
 
 data class UserState(
@@ -7,6 +8,7 @@ data class UserState(
     val email: String?,
     val name: String?,
     val isSanta: Boolean?,
+    val fetchUserStatus: FetchUserStatus,
     val wishes: List<UserWish>?,
     val currentWishValue: String,
 )

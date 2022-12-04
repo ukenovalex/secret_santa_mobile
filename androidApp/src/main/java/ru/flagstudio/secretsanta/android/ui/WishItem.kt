@@ -20,8 +20,8 @@ fun WishItem(text: String, deleteWish: () -> Unit) {
         .clip(RoundedCornerShape(16.dp))
         .background(Colors.SecondaryButtonBackground)
         .padding(
-            start = 40.dp,
-            end = 40.dp,
+            start = 20.dp,
+            end = 20.dp,
             top = 5.dp,
             bottom = 5.dp
         )

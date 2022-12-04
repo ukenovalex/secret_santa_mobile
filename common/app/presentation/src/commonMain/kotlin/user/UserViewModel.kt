@@ -4,6 +4,7 @@ import com.adeo.kviewmodel.BaseSharedViewModel
 import di.Inject
 import kotlinx.coroutines.launch
 import user.models.AddWishRequest
+import user.models.FetchUserStatus
 import user.models.RemoveWishRequest
 import user.models.UserWish
 
@@ -14,6 +15,7 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
         name = null,
         isSanta = null,
         wishes = null,
+        fetchUserStatus = FetchUserStatus.EMPTY,
         currentWishValue = ""
     )
 ){
@@ -35,6 +37,7 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
 
     private fun fetchUserInfo() {
         viewModelScope.launch {
+            viewState = viewState.copy(fetchUserStatus = FetchUserStatus.LOADING)
             try {
                 val response = repository.fetchUserInfo()
                 viewState = viewState.copy(
@@ -42,9 +45,11 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
                     email = response.email,
                     name = response.name,
                     isSanta = response.isSanta,
-                    wishes = response.wishes
+                    wishes = response.wishes,
+                    fetchUserStatus = FetchUserStatus.SUCCESS
                 )
             } catch (e: RuntimeException) {
+                viewState = viewState.copy(fetchUserStatus = FetchUserStatus.ERROR)
                 println(e.message)
             }
         }
