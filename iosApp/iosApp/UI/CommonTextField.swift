@@ -10,7 +10,6 @@ import SwiftUI
 
 struct CommonTextField: View {
     
-
     @State private var value: String = ""
     private let label: String
     private let hint: String

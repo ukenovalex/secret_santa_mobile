@@ -16,6 +16,9 @@ struct AuthView: View {
         
     var body: some View {
         MainTemplate() {
+            CommonTextField(label: "anal", hint: "anal", enabled: true, isSecure: false) { _ in
+                print("any")
+            }
             CommonButton(action: {}) {
                 Text("New test")
                     .foregroundColor(Color.secondary)

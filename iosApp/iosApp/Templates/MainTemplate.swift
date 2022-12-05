@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct MainTemplate<Content: View>: View {
-    @ViewBuilder var content: Content
+    var content: () -> Content
     
     var body: some View {
         VStack(spacing: 0.0) {
@@ -17,7 +17,7 @@ struct MainTemplate<Content: View>: View {
                 .frame(width: .infinity, height: 60)
                 .foregroundColor(.white)
             VStack {
-                content
+                content()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.AppRed)
@@ -25,7 +25,7 @@ struct MainTemplate<Content: View>: View {
         .ignoresSafeArea()
     }
     
-    init(_ content: () -> Content) {
-        self.content = content()
+    init(@ViewBuilder _ content: @escaping () -> Content) {
+        self.content = content
     }
 }
