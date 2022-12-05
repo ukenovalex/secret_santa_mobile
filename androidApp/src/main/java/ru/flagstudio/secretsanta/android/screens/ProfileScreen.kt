@@ -50,15 +50,16 @@ fun ProfileScreen(viewModel: SantaViewModel) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize().padding(start = 12.dp, end = 12.dp)
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Spacer(modifier = Modifier.height(130.dp))
+                Spacer(modifier = Modifier.height(120.dp))
                 Text(
+                    textAlign = TextAlign.Center,
                     fontFamily = Fonts.RobotoBold,
                     text = state.value.userName,
                     color = Colors.TextColor,
@@ -108,7 +109,7 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                             painter = painterResource(id = R.drawable.secret_santa),
                             contentDescription = "Secret Santa",
                             contentScale = ContentScale.FillHeight,
-                            modifier = Modifier.height(282.dp)
+                            modifier = Modifier.height(282.dp).offset(x = 12.dp)
                         )
                     }
                 }

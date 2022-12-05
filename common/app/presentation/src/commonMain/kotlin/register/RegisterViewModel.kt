@@ -76,12 +76,19 @@ class RegisterViewModel : BaseSharedViewModel<RegisterState, Nothing, RegisterEv
     }
 
     private suspend fun fetchLogin(email: String, password: String) {
-        val response: LoginResponse = authRepository.login(LoginRequest(
-            email = email,
-            password = password
-        ))
-        if (response.jwt.isNotBlank()) {
-            authRepository.saveToken(response.jwt)
+        try {
+            val response: LoginResponse = authRepository.login(
+                LoginRequest(
+                    email = email,
+                    password = password
+                )
+            )
+            if (response.jwt.isNotBlank()) {
+                authRepository.saveToken(response.jwt)
+            }
+        } catch (e: RuntimeException) {
+            viewState = viewState.copy(status = RegisterStatus.ERROR)
+            println(e.message)
         }
     }
 
