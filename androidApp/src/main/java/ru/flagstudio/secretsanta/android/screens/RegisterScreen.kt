@@ -11,10 +11,7 @@ import com.adeo.kviewmodel.compose.observeAsState
 import register.RegisterEvent
 import register.RegisterViewModel
 import register.model.RegisterStatus
-import ru.flagstudio.secretsanta.android.ui.AppButton
-import ru.flagstudio.secretsanta.android.ui.AppTextField
-import ru.flagstudio.secretsanta.android.ui.AppTitle
-import ru.flagstudio.secretsanta.android.ui.MainContainer
+import ru.flagstudio.secretsanta.android.ui.*
 
 
 @Composable
@@ -31,6 +28,12 @@ fun RegisterScreen(
     }
 
     MainContainer(paddingHorizontal = 12.dp) {
+        AppDialogError(
+            isShow = state.value.status == RegisterStatus.ERROR,
+            message = "Санта тебе не доверяет. Это точно твой корпоративный почтовый ящик?"
+        ) {
+            viewModel.obtainEvent(RegisterEvent.ChangeFetchStatus(RegisterStatus.EMPTY))
+        }
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxHeight(0.5f)

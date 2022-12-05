@@ -1,10 +1,10 @@
 package santa
 
-import santa.models.SantaDataStatus
+import santa.models.SantaStatus
 
 data class SantaState(
     val userName: String,
     val giftedName: String?,
     val isSanta: Boolean,
-    val fetchDataStatus: SantaDataStatus
+    val fetchStatus: SantaStatus
 )

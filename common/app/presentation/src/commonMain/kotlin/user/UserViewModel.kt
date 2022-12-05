@@ -3,10 +3,7 @@ package user
 import com.adeo.kviewmodel.BaseSharedViewModel
 import di.Inject
 import kotlinx.coroutines.launch
-import user.models.AddWishRequest
-import user.models.FetchUserStatus
-import user.models.RemoveWishRequest
-import user.models.UserWish
+import user.models.*
 
 class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
     initialState = UserState(
@@ -16,19 +13,36 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
         isSanta = null,
         wishes = null,
         fetchUserStatus = FetchUserStatus.EMPTY,
-        currentWishValue = ""
+        currentWishValue = "",
+        addWishStatus = AddWishStatus.EMPTY,
+        removeWishStatus = RemoveWishStatus.EMPTY
     )
-){
+) {
 
     private val repository: UserRepository = Inject.instance()
 
     override fun obtainEvent(viewEvent: UserEvent) {
-        when(viewEvent) {
+        when (viewEvent) {
             is UserEvent.GetUserInfo -> fetchUserInfo()
             is UserEvent.AddWish -> addWish()
             is UserEvent.RemoveWish -> removeWish(viewEvent.id)
             is UserEvent.InputWish -> inputWish(viewEvent.value)
+            is UserEvent.ChangeFetchUserStatus -> changeFetchUserStatus(viewEvent.status)
+            is UserEvent.ChangeAddWishStatus -> changeAddWishStatus(viewEvent.status)
+            is UserEvent.ChangeRemoveWishStatus -> changeRemoveWishStatus(viewEvent.status)
         }
+    }
+
+    private fun changeRemoveWishStatus(status: RemoveWishStatus) {
+        viewState = viewState.copy(removeWishStatus = status)
+    }
+
+    private fun changeAddWishStatus(status: AddWishStatus) {
+        viewState = viewState.copy(addWishStatus = status)
+    }
+
+    private fun changeFetchUserStatus(status: FetchUserStatus) {
+        viewState = viewState.copy(fetchUserStatus = status)
     }
 
     private fun inputWish(value: String) {
@@ -58,11 +72,15 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
     private fun addWish() {
         viewModelScope.launch {
             try {
+                viewState = viewState.copy(addWishStatus = AddWishStatus.LOADING)
                 val wish = repository.addWish(AddWishRequest(message = viewState.currentWishValue))
                 val newList = viewState.wishes?.toMutableList()
                 newList?.add(UserWish(id = wish.id, message = wish.message))
-                viewState = viewState.copy(wishes = newList, currentWishValue = "")
+                viewState = viewState.copy(
+                    wishes = newList, currentWishValue = "", addWishStatus = AddWishStatus.SUCCESS
+                )
             } catch (e: RuntimeException) {
+                viewState = viewState.copy(addWishStatus = AddWishStatus.ERROR)
                 println(e.message)
             }
         }
@@ -70,16 +88,20 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
 
     private fun removeWish(id: Int) {
         viewModelScope.launch {
+            viewState = viewState.copy(removeWishStatus = RemoveWishStatus.LOADING)
             val wish = viewState.wishes?.find { it.id == id }
             try {
                 val newList = viewState.wishes?.filter { it.id != id }
                 viewState = viewState.copy(wishes = newList)
                 repository.removeWish(RemoveWishRequest(id = id))
+                viewState = viewState.copy(removeWishStatus = RemoveWishStatus.SUCCESS)
             } catch (e: RuntimeException) {
                 if (wish != null) {
-                    val newList = viewState.wishes?.toMutableList()
-                    newList?.add(wish)
-                    viewState = viewState.copy(wishes = newList)
+                    val oldList = viewState.wishes?.toMutableList()
+                    oldList?.add(wish)
+                    viewState = viewState.copy(
+                        wishes = oldList, removeWishStatus = RemoveWishStatus.ERROR
+                    )
                 }
                 println(e.message)
             }

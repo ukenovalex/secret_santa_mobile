@@ -19,7 +19,7 @@ fun RegistrationWishScreen(viewModel: UserViewModel, navigateToCongrat: () -> Un
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
         ) {
-            AppButton(onClick = navigateToCongrat, title = "Done", disabled = false)
+            AppButton(onClick = navigateToCongrat, title = "Хочу", disabled = false)
         }
     }
 }

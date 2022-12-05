@@ -1,8 +1,9 @@
 package santa.models
 
-enum class SantaDataStatus {
+enum class SantaStatus {
     EMPTY,
     LOADING,
     SUCCESS,
-    ERROR
+    ERROR,
+    BECOME_ERROR,
 }

@@ -32,7 +32,12 @@ class RegisterViewModel : BaseSharedViewModel<RegisterState, Nothing, RegisterEv
             is RegisterEvent.InputName -> inputName(viewEvent.value)
             is RegisterEvent.InputPassword -> inputPassword(viewEvent.value)
             is RegisterEvent.PressRegister -> onPressRegister()
+            is RegisterEvent.ChangeFetchStatus -> changeFetchStatus(viewEvent.status)
         }
+    }
+
+    private fun changeFetchStatus(status: RegisterStatus) {
+        viewState = viewState.copy(status = status)
     }
 
     private fun inputName(value: String) {

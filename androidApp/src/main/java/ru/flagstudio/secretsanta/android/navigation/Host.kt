@@ -27,13 +27,11 @@ fun Host(navController: NavHostController) {
                         inclusive = true
                     }
                 }
-                authViewModel.clear()
             })
         }
         composable(Routes.Register) {
             RegisterScreen(viewModel = registerViewModel, navigateToRegistrationWish = {
                 navController.navigate(Routes.RegisterWish)
-                registerViewModel.clear()
             })
         }
         composable(Routes.RegisterWish) {

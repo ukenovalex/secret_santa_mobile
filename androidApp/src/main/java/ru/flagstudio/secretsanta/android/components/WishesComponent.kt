@@ -18,7 +18,9 @@ import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
 import user.UserEvent
 import user.UserViewModel
+import user.models.AddWishStatus
 import user.models.FetchUserStatus
+import user.models.RemoveWishStatus
 
 @Composable
 fun WishesComponent(viewModel: UserViewModel) {
@@ -33,6 +35,24 @@ fun WishesComponent(viewModel: UserViewModel) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        AppDialogError(
+            isShow = state.value.fetchUserStatus == FetchUserStatus.ERROR,
+            message = "Санта тебя не узнал. Попробуй еще раз!"
+        ) {
+            viewModel.obtainEvent(UserEvent.GetUserInfo)
+        }
+        AppDialogError(
+            isShow = state.value.addWishStatus == AddWishStatus.ERROR,
+            message = "Твое пожелание не дошло до санты. Попробуй еще раз!"
+        ) {
+            viewModel.obtainEvent(UserEvent.ChangeAddWishStatus(AddWishStatus.EMPTY))
+        }
+        AppDialogError(
+            isShow = state.value.removeWishStatus == RemoveWishStatus.ERROR,
+            message = "Не получилось избавиться от твоего желания. Хоти аккуратней!"
+        ) {
+            viewModel.obtainEvent(UserEvent.ChangeRemoveWishStatus(RemoveWishStatus.EMPTY))
+        }
         AppTitle(text = "Расскажи о своем подарке мечты")
         Spacer(modifier = Modifier.height(62.dp))
         AppTextField(

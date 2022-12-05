@@ -15,25 +15,38 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.adeo.kviewmodel.compose.observeAsState
 import ru.flagstudio.secretsanta.android.R
+import ru.flagstudio.secretsanta.android.ui.AppDialogError
 import ru.flagstudio.secretsanta.android.ui.SecondaryButton
 import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
 import santa.SantaEvent
 import santa.SantaViewModel
-import santa.models.SantaDataStatus
+import santa.models.SantaStatus
 
 @Composable
 fun ProfileScreen(viewModel: SantaViewModel) {
     val state = viewModel.viewStates().observeAsState()
 
 
-    LaunchedEffect(state.value.fetchDataStatus) {
-        if (state.value.fetchDataStatus == SantaDataStatus.EMPTY) {
+    LaunchedEffect(state.value.fetchStatus) {
+        if (state.value.fetchStatus == SantaStatus.EMPTY) {
             viewModel.obtainEvent(SantaEvent.FetchSantaInfo)
         }
     }
 
-    if (state.value.fetchDataStatus == SantaDataStatus.SUCCESS) {
+    if (state.value.fetchStatus == SantaStatus.SUCCESS) {
+        AppDialogError(
+            isShow = state.value.fetchStatus == SantaStatus.BECOME_ERROR,
+            message = "Все послушные малыши закончились. Можешь сделать подарок сам себе :)"
+        ) {
+            viewModel.obtainEvent(SantaEvent.ChangeFetchStatus(SantaStatus.SUCCESS))
+        }
+        AppDialogError(
+            isShow = state.value.fetchStatus == SantaStatus.ERROR,
+            message = "Санта тебя не узнал. Попробуй еще раз!"
+        ) {
+            viewModel.obtainEvent(SantaEvent.FetchSantaInfo)
+        }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,

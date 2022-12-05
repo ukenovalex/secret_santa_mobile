@@ -11,10 +11,7 @@ import auth.AuthEvent
 import auth.AuthViewModel
 import auth.model.LoginStatus
 import com.adeo.kviewmodel.compose.observeAsState
-import ru.flagstudio.secretsanta.android.ui.AppButton
-import ru.flagstudio.secretsanta.android.ui.AppTextField
-import ru.flagstudio.secretsanta.android.ui.AppTitle
-import ru.flagstudio.secretsanta.android.ui.MainContainer
+import ru.flagstudio.secretsanta.android.ui.*
 
 @Composable
 fun AuthScreen(
@@ -31,6 +28,12 @@ fun AuthScreen(
     }
 
     MainContainer(paddingHorizontal = 12.dp) {
+        AppDialogError(
+            isShow = state.value.loginStatus == LoginStatus.ERROR,
+            message = "Всё сломалось :( Убедись что твой корпоративный почтовый ящик и пароль верны."
+        ) {
+            viewModel.obtainEvent(AuthEvent.ChangeLoginStatus(LoginStatus.NOT_VERIFIED))
+        }
         Column(
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxHeight(0.5f)
