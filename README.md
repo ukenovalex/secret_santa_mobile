@@ -10,12 +10,11 @@
 Устанавливаем CocoaPods
   - ``` brew install cocoapods ```
   
-В корне проекта запускаем
-  - Windows - ``` gradlew build ```
-  - Unix - ``` ./gradlew build ```
+Устанавливаем InjectionIII для хот релоада в IOS симуляторе
+  - https://apps.apple.com/us/app/injectioniii/id1380446739?mt=12
   
-Либо вариант побыстрее 
-  - Запускаем проект в Android Studio и жмем на ```Gradle Sync``` (это слоник со стрелочкой в правом верхнем углу)
+Запускаем проект в Android Studio 
+  - Жмем на ```Gradle Sync``` (это слоник со стрелочкой в правом верхнем углу)
 
 Переходим в директорию iosApp
   - ``` cd iosApp ```
@@ -23,9 +22,9 @@
 Запускаем следующую команду
   - ``` pod install ```
 
-Затем
-  - Открываем iosApp в XCode
+Открываем iosApp в XCode
   - Жмем ``` Product->Analyze ```
+  - Ждем не обращая внимания на варнинги (Их будет много. Это нормально!)
   
 # API
 Вся бизнес логика лежит в пакете SharedSDK. ``` import SharedSDK ```
@@ -58,7 +57,7 @@ AuthViewModel - ViewModel для авторизации. Содержит в с�
     }
     ```
   
-RegisterViewModel - ViewModel для регистрации. Содержит в себе:
+  RegisterViewModel - ViewModel для регистрации. Содержит в себе:
   - RegisterState
     ```
     val name: String, // Имя пользователя
@@ -72,11 +71,11 @@ RegisterViewModel - ViewModel для регистрации. Содержит в
     data class InputName(val value: String) : RegisterEvent() // Событие ввода имени
     data class InputEmail(val value: String) : RegisterEvent() // Событие ввода емайла
     data class InputPassword(val value: String) : RegisterEvent() // Событие ввода пароля
+    data class ChangeFetchStatus(val status: RegisterStatus) : RegisterEvent()
     object PressRegister : RegisterEvent() // Событие регистрации (всё летит на сервер)
     ```
   - RegisterStatus
     ```
-    // Аналогично
     enum class RegisterStatus {
       EMPTY,
       LOADING,
@@ -84,4 +83,88 @@ RegisterViewModel - ViewModel для регистрации. Содержит в
       ERROR
     }
     ```
-
+UserViewModel - ViewModel для пользователя. Содержит в себе:
+  - 
+  ```
+  data class UserState(
+    val id: Int?,
+    val email: String?,
+    val name: String?,
+    val isSanta: Boolean?,
+    val fetchUserStatus: FetchUserStatus,
+    val addWishStatus: AddWishStatus,
+    val removeWishStatus: RemoveWishStatus,
+    val wishes: List<UserWish>?,
+    val currentWishValue: String
+  )
+  ```
+  
+  -
+  ```
+  sealed class UserEvent {
+    object GetUserInfo : UserEvent()
+    object AddWish : UserEvent()
+    data class RemoveWish(val id: Int) : UserEvent()
+    data class InputWish(val value: String) : UserEvent()
+    data class ChangeFetchUserStatus(val status: FetchUserStatus) : UserEvent()
+    data class ChangeAddWishStatus(val status: AddWishStatus) : UserEvent()
+    data class ChangeRemoveWishStatus(val status: RemoveWishStatus) : UserEvent()
+  }
+  ```
+  -
+  ```
+  enum class AddWishStatus {
+    EMPTY,
+    LOADING,
+    SUCCESS,
+    ERROR
+  }
+  ```
+  -
+  ```
+  enum class RemoveWishStatus {
+    EMPTY,
+    LOADING,
+    SUCCESS,
+    ERROR
+  }
+  ```
+  -
+  ```
+  enum class FetchUserStatus {
+    EMPTY,
+    LOADING,
+    SUCCESS,
+    ERROR
+  }
+  ```
+  
+  SantaViewModel - ViewModel для регистрации. Содержит в себе:
+  -
+  ```
+  data class SantaState(
+    val userName: String,
+    val giftedName: String?,
+    val isSanta: Boolean,
+    val fetchStatus: SantaStatus
+  )
+  ```
+  -
+  ```
+  sealed class SantaEvent {
+    object FetchSantaInfo: SantaEvent()
+    object BecomeSanta: SantaEvent()
+    data class ChangeFetchStatus(val status: SantaStatus): SantaEvent()
+  }
+  ```
+  -
+  ```
+  enum class SantaStatus {
+    EMPTY,
+    LOADING,
+    SUCCESS,
+    ERROR,
+    BECOME_ERROR,
+  }
+  ```
+ 
