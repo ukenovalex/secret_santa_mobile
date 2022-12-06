@@ -16,12 +16,12 @@ struct AuthView: View {
         
     var body: some View {
         MainTemplate() {
-            CommonTextField(label: "anal", hint: "anal", enabled: true, isSecure: false) { _ in
+            CommonTextField(label: "Egor yeto anal!", hint: "anal", enabled: true, isSecure: false) { _ in
                 print("any")
             }
             CommonButton(action: {}) {
-                Text("New test")
-                    .foregroundColor(Color.secondary)
+                Text("New World")
+                    .foregroundColor(Color.black)
             }
         }
     }
@@ -39,7 +39,7 @@ struct AuthScreen: View {
     }
 }
 
-struct AuthScreen_Previews: PreviewProvider {
+class AuthScreen_Previews: PreviewProvider {
     static var previews: some View {
         let viewState = AuthState(
             email: "test@test.test",
@@ -49,5 +49,19 @@ struct AuthScreen_Previews: PreviewProvider {
         )
         AuthView(viewState: viewState) { event in }
     }
+    
+    #if DEBUG
+        @objc class func injected() {
+            let viewState = AuthState(
+                    email: "test@test.test",
+                    password: "",
+                    loginStatus: LoginStatus.success,
+                    validForm: false
+            )
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            windowScene?.windows.first?.rootViewController =
+                    UIHostingController(rootView: AuthView(viewState: viewState) { event in })
+        }
+    #endif
 }
 
