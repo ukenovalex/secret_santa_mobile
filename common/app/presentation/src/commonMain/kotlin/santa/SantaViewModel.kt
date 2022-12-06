@@ -10,7 +10,9 @@ class SantaViewModel : BaseSharedViewModel<SantaState, Nothing, SantaEvent>(
     initialState = SantaState(
         userName = "",
         giftedName = null,
+        giftedWishList = listOf(),
         isSanta = false,
+        isShowGiftedWishDialog = false,
         fetchStatus = SantaStatus.EMPTY
     )
 ) {
@@ -23,7 +25,17 @@ class SantaViewModel : BaseSharedViewModel<SantaState, Nothing, SantaEvent>(
             is SantaEvent.FetchSantaInfo -> fetchSantaInfo()
             is SantaEvent.BecomeSanta -> becomeSanta()
             is SantaEvent.ChangeFetchStatus -> changeFetchStatus(viewEvent.status)
+            is SantaEvent.ShowGiftedWishDialog -> showGiftedWishDialog()
+            is SantaEvent.HideGiftedWishDialog -> hideGiftedWishDialog()
         }
+    }
+
+    private fun hideGiftedWishDialog() {
+        viewState = viewState.copy(isShowGiftedWishDialog = false)
+    }
+
+    private fun showGiftedWishDialog() {
+        viewState = viewState.copy(isShowGiftedWishDialog = true)
     }
 
     private fun changeFetchStatus(status: SantaStatus) {
@@ -63,6 +75,10 @@ class SantaViewModel : BaseSharedViewModel<SantaState, Nothing, SantaEvent>(
 
     private suspend fun fetchGiftedUser() {
         val response = santaRepository.fetchGiftedUser()
-        viewState = viewState.copy(giftedName = response.name, isSanta = true)
+        viewState = viewState.copy(
+            giftedName = response.name,
+            isSanta = true,
+            giftedWishList = response.wishes
+        )
     }
 }

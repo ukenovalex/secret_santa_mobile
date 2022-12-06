@@ -15,7 +15,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.adeo.kviewmodel.compose.observeAsState
 import ru.flagstudio.secretsanta.android.R
+import ru.flagstudio.secretsanta.android.ui.AppButton
 import ru.flagstudio.secretsanta.android.ui.AppDialogError
+import ru.flagstudio.secretsanta.android.ui.GiftedWishListDialog
 import ru.flagstudio.secretsanta.android.ui.SecondaryButton
 import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
@@ -50,14 +52,17 @@ fun ProfileScreen(viewModel: SantaViewModel) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxSize().padding(start = 12.dp, end = 12.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 12.dp, end = 12.dp)
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth()
+                verticalArrangement = Arrangement.Bottom,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.2f)
             ) {
-                Spacer(modifier = Modifier.height(120.dp))
                 Text(
                     textAlign = TextAlign.Center,
                     fontFamily = Fonts.RobotoBold,
@@ -65,21 +70,31 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                     color = Colors.TextColor,
                     fontSize = 32.sp
                 )
-                if (!state.value.isSanta) {
-                    Spacer(modifier = Modifier.height(130.dp))
+            }
+            if (!state.value.isSanta) {
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier.fillMaxHeight()
+                ) {
                     SecondaryButton(
                         onClick = { viewModel.obtainEvent(SantaEvent.BecomeSanta) },
                         title = "Вжух, и я санта",
                         width = 250.dp
                     )
                 }
-
             }
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom,
             ) {
                 if (state.value.isSanta) {
+                    GiftedWishListDialog(
+                        name = state.value.giftedName ?: "",
+                        isShow = state.value.isShowGiftedWishDialog,
+                        wishList = state.value.giftedWishList
+                    ) {
+                        viewModel.obtainEvent(SantaEvent.HideGiftedWishDialog)
+                    }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
@@ -101,6 +116,12 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                             color = Colors.TextColor,
                             modifier = Modifier.rotate(-3.92f)
                         )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        SecondaryButton(
+                            onClick = { viewModel.obtainEvent(SantaEvent.ShowGiftedWishDialog) },
+                            title = "Интересы",
+                            width = 250.dp
+                        )
                     }
                     Row(
                         horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()
@@ -109,7 +130,9 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                             painter = painterResource(id = R.drawable.secret_santa),
                             contentDescription = "Secret Santa",
                             contentScale = ContentScale.FillHeight,
-                            modifier = Modifier.height(282.dp).offset(x = 12.dp)
+                            modifier = Modifier
+                                .height(282.dp)
+                                .offset(x = 12.dp)
                         )
                     }
                 }

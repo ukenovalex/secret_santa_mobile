@@ -17,13 +17,13 @@ import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
 
 @Composable
-fun WishItem(text: String, deleteWish: () -> Unit = {}) {
+fun WishItemDark(text: String, deleteWish: () -> Unit = {}) {
     Box(modifier = Modifier
         .clickable(
             indication = null,
             interactionSource = remember { MutableInteractionSource() }) { deleteWish() }
         .clip(RoundedCornerShape(16.dp))
-        .background(Colors.SecondaryButtonBackground)
+        .background(Colors.Background)
         .padding(
             start = 20.dp, end = 20.dp, top = 5.dp, bottom = 5.dp
         )
@@ -33,7 +33,7 @@ fun WishItem(text: String, deleteWish: () -> Unit = {}) {
             fontSize = 16.sp,
             text = text.lowercase(),
             fontFamily = Fonts.RobotoMedium,
-            color = Colors.SecondaryButtonTextColor
+            color = Colors.TextColor
         )
     }
 }
