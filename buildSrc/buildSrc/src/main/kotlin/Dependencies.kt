@@ -59,6 +59,10 @@ object Dependencies {
                 private const val version = "2.5.3"
                 const val core = "androidx.navigation:navigation-compose:$version"
             }
+
+            object Scrollbar {
+                const val core = "com.github.nanihadesuka:LazyColumnScrollbar:1.5.1"
+            }
         }
     }
     object Ktor {

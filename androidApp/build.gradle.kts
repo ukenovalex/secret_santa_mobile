@@ -50,6 +50,7 @@ dependencies {
     implementation(Dependencies.Android.Compose.activity_compose)
     implementation(Dependencies.Android.Compose.viewModel)
     implementation(Dependencies.Android.Compose.Navigation.core)
+    implementation(Dependencies.Android.Compose.Scrollbar.core)
 
     implementation(Dependencies.Android.ExoPlayer.core)
     implementation(Dependencies.Android.ExoPlayer.ui)

@@ -15,9 +15,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.flagstudio.secretsanta.android.ui.theme.Colors
 import ru.flagstudio.secretsanta.android.ui.theme.Fonts
+import ru.flagstudio.secretsanta.android.utils.Constants.MAX_WISH_LENGTH
+
 
 @Composable
 fun WishItem(text: String, deleteWish: () -> Unit = {}) {
+    val content = if (text.length < MAX_WISH_LENGTH) {
+        text
+    } else {
+        "${text.substring(0..MAX_WISH_LENGTH)}..."
+    }
+
     Box(modifier = Modifier
         .clickable(
             indication = null,
@@ -31,7 +39,7 @@ fun WishItem(text: String, deleteWish: () -> Unit = {}) {
     ) {
         Text(
             fontSize = 16.sp,
-            text = text.lowercase(),
+            text = content.lowercase(),
             fontFamily = Fonts.RobotoMedium,
             color = Colors.SecondaryButtonTextColor
         )

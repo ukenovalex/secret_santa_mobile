@@ -18,7 +18,7 @@ import ru.flagstudio.secretsanta.android.ui.theme.Fonts
 fun AppButton(
     onClick: () -> Unit,
     title: String,
-    disabled: Boolean,
+    disabled: Boolean = false,
     width: Dp = 150.dp
 ) {
     Button(
