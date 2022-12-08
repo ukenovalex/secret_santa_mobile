@@ -11,10 +11,9 @@ import SharedSDK
 
 struct WelcomeView: View {
     var body: some View {
-            
-        }
+        Text("WelcomeView")
     }
-
+}
 //
 //struct RegisterScreen: View {
 //    private let viewModel = RegisterViewModel()

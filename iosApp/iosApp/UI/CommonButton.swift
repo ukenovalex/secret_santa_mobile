@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CommonButton: View {
     let action: () -> Void
+    var disabled: Bool = false
     let label: () -> Text
     
     var body: some View {
