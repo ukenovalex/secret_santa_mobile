@@ -1,17 +1,17 @@
 //
-//  AuthScreen.swift
+//  RegistrationScreen.swift
 //  iosApp
 //
-//  Created by Slava Rykov on 03.12.2022.
+//  Created by Yegor Anisimov on 07.12.2022.
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
 import SwiftUI
 import SharedSDK
 
-struct AuthView: View {
-    let viewState: AuthState
-    let eventHandler: (AuthEvent) -> Void
+struct RegisterView: View {
+    let viewState: RegisterState
+    let eventHandler: (RegisterEvent) -> Void
     private let viewModel = UserViewModel()
         
     var body: some View {
@@ -20,8 +20,11 @@ struct AuthView: View {
             Text("Introduce yourself, naughty kid!")
                 .multilineTextAlignment(.center)
                 .foregroundColor(.AppWhite)
-                .font(.custom("InriaSans-Bold", size: 36))
+                .font(.custom("InriaSans-Bold", size: 32))
             Spacer()
+            CommonTextField(label: "Name", hint: "Slacha", enabled: true, isSecure: false) { _ in
+                print("any")
+            }.padding(.bottom, 20)
             CommonTextField(label: "Email", hint: "example@gmail.com", enabled: true, isSecure: false) { _ in
                 print("213")
             }.padding(.bottom, 20)
@@ -38,40 +41,42 @@ struct AuthView: View {
     }
 }
 
-struct AuthScreen: View {
-    private let viewModel = AuthViewModel()
+struct RegisterScreen: View {
+    private let viewModel = RegisterViewModel()
     
     var body: some View {
         ObservingView(statePublisher: statePublisher(viewModel.viewStates())) { viewState in
-            AuthView(viewState: viewState) { event in
+            RegisterView(viewState: viewState) { event in
                 viewModel.obtainEvent(viewEvent: event)
             }
         }
     }
 }
 
-class AuthScreen_Previews: PreviewProvider {
+class RegisterScreen_Previews: PreviewProvider {
     static var previews: some View {
-        let viewState = AuthState(
+        let viewState = RegisterState(
+            name: "Yegor",
             email: "test@test.test",
             password: "",
-            loginStatus: LoginStatus.success,
-            validForm: false
+            validForm: false,
+            status: RegisterStatus.success
         )
-        AuthView(viewState: viewState) { event in }
+        RegisterView(viewState: viewState) { event in }
     }
     
     #if DEBUG
         @objc class func injected() {
-            let viewState = AuthState(
+            let viewState = RegisterState(
+                    name: "Yegor",
                     email: "test@test.test",
                     password: "",
-                    loginStatus: LoginStatus.success,
-                    validForm: false
+                    validForm: false,
+                    status: RegisterStatus.success
             )
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             windowScene?.windows.first?.rootViewController =
-                    UIHostingController(rootView: AuthView(viewState: viewState) { event in })
+                    UIHostingController(rootView: RegisterView(viewState: viewState) { event in })
         }
     #endif
 }

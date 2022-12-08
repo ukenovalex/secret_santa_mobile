@@ -17,7 +17,12 @@ struct CommonTextField: View {
     private let isSecure: Bool
     private let onValueChanged: (String) -> Void
     
-    init(label: String, hint: String, enabled: Bool = true, isSecure: Bool = false, onValueChanged: @escaping (String) -> Void) {
+    init(label: String,
+         hint: String,
+         enabled: Bool = true,
+         isSecure: Bool = false,
+         onValueChanged: @escaping (String) -> Void)
+    {
         self.label = label
         self.hint = hint
         self.enabled = enabled
@@ -28,21 +33,22 @@ struct CommonTextField: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(label)
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.red)
+                .font(.custom("Roboto-Medium", size: 16))
+                .foregroundColor(.AppWhite)
                 .frame(alignment: .leading)
+                .padding(.bottom)
             ZStack(alignment: .leading) {
                 if (value.isEmpty) {
                     Text(hint)
-                        .foregroundColor(.red)
+                        .foregroundColor(.AppWhite)
                         .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-                        .font(.system(size: 16))
+                        .font(.custom("Roboto-Regular", size: 16))
                 }
                 
                 if isSecure {
                     SecureField("", text: $value)
-                        .foregroundColor(.red)
-                        .font(.system(size: 16))
+                        .foregroundColor(.AppWhite)
+                        .font(.custom("Roboto-Medium", size: 16))
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                         .disabled(!enabled)
@@ -52,8 +58,8 @@ struct CommonTextField: View {
                         }
                 } else {
                     TextField("", text: $value)
-                        .foregroundColor(.red)
-                        .font(.system(size: 16))
+                        .foregroundColor(.AppWhite)
+                        .font(.custom("Roboto-Medium", size: 16))
                         .autocapitalization(.none)
                         .disabled(!enabled)
                         .disableAutocorrection(true)
@@ -63,8 +69,8 @@ struct CommonTextField: View {
                         }
                 }
             }
-            .frame(height: 56)
-            Divider().overlay(Color.red)
+            .frame(height: 30)
+            Divider().overlay(Color.AppWhite)
         }
         .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24))
     }
@@ -72,7 +78,7 @@ struct CommonTextField: View {
 
 struct CommonTextField_Previews: PreviewProvider {
     static var previews: some View {
-        CommonTextField(label: "Text", hint: "Your Email", enabled: true, isSecure: false, onValueChanged: { newValue in
+        CommonTextField(label: "Name", hint: "Slacha", enabled: true, isSecure: true, onValueChanged: { newValue in
             print(newValue)
         })
     }
