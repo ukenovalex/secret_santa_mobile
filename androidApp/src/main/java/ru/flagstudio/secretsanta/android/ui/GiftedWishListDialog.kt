@@ -53,24 +53,20 @@ fun GiftedWishListDialog(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Box(modifier = Modifier.height(120.dp)) {
-                        ColumnScrollbar(
-                            state = state,
-                            thumbColor = Colors.AccentColor,
-                            thumbSelectedColor = Colors.AccentColor,
+
+                        Box(
+                            Modifier
+                                .verticalScroll(state = state)
+                                .fillMaxWidth()
+                                .padding(end = 8.dp),
                         ) {
-                            Box(
-                                Modifier
-                                    .verticalScroll(state = state)
-                                    .fillMaxWidth()
-                                    .padding(end = 8.dp),
-                            ) {
-                                FlowRow(horizontalGap = 12.dp, verticalGap = 16.dp) {
-                                    wishList.forEach {
-                                        WishItemDark(it)
-                                    }
+                            FlowRow(horizontalGap = 12.dp, verticalGap = 16.dp) {
+                                wishList.forEach {
+                                    WishItemDark(it)
                                 }
                             }
                         }
+
                     }
                 }
             }

@@ -59,7 +59,7 @@ fun AppDialogError(isShow: Boolean, message: String, onHide: () -> Unit) {
                         onClick = onHide,
                         title = "Я исправлюсь",
                         disabled = false,
-                        width = 180.dp
+                        width = 200.dp
                     )
                 }
             }

@@ -54,7 +54,7 @@ fun FirstScreen(
             .background(Colors.SecondaryBackground)
             .paint(
                 painter = painterResource(id = R.drawable.main_screen_image),
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.FillWidth
             )
             .fillMaxSize()
             .clickable(
