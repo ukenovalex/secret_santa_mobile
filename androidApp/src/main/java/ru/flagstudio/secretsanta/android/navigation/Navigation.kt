@@ -1,6 +1,7 @@
 package ru.flagstudio.secretsanta.android.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -29,6 +30,11 @@ fun Navigation() {
             route = Routes.ProfileWish,
             icon = painterResource(id = R.drawable.wish_nav_icon),
         ),
+        BottomNavItem(
+            name = "UserList",
+            route = Routes.ProfileUserList,
+            icon = painterResource(id = R.drawable.user_list_nav_item),
+        ),
     )
     Scaffold(
         backgroundColor = Colors.Transparent,
@@ -50,7 +56,7 @@ fun Navigation() {
                             }
                         }
                     },
-                    modifier = Modifier.height(70.dp)
+                    modifier = Modifier.fillMaxHeight(0.1f)
                 )
             }
         },

@@ -7,5 +7,6 @@ object Routes {
     const val Congrat = "congratulations"
     const val Profile = "profile"
     const val ProfileWish = "profile_wish"
+    const val ProfileUserList = "profile_user_list"
     const val FirstScreen = "first_screen"
 }

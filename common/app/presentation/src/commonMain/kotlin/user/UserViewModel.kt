@@ -15,7 +15,9 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
         fetchUserStatus = FetchUserStatus.EMPTY,
         currentWishValue = "",
         addWishStatus = AddWishStatus.EMPTY,
-        removeWishStatus = RemoveWishStatus.EMPTY
+        removeWishStatus = RemoveWishStatus.EMPTY,
+        fetchUserListStatus = FetchUserListStatus.EMPTY,
+        users = listOf()
     )
 ) {
 
@@ -30,6 +32,21 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
             is UserEvent.ChangeFetchUserStatus -> changeFetchUserStatus(viewEvent.status)
             is UserEvent.ChangeAddWishStatus -> changeAddWishStatus(viewEvent.status)
             is UserEvent.ChangeRemoveWishStatus -> changeRemoveWishStatus(viewEvent.status)
+            is UserEvent.GetAllUsers -> getAllUsers()
+        }
+    }
+
+    private fun getAllUsers() {
+        viewModelScope.launch {
+            try {
+                viewState = viewState.copy(fetchUserListStatus = FetchUserListStatus.LOADING)
+                val users = repository.fetchUserList()
+                viewState = viewState.copy(
+                    fetchUserListStatus = FetchUserListStatus.SUCCESS, users = users
+                )
+            } catch (e: RuntimeException) {
+                viewState = viewState.copy(fetchUserListStatus = FetchUserListStatus.ERROR)
+            }
         }
     }
 

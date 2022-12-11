@@ -4,10 +4,7 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import user.models.AddWishRequest
-import user.models.AddWishResponse
-import user.models.FetchUserResponse
-import user.models.RemoveWishRequest
+import user.models.*
 
 class KtorUserRemoteDataSource(private val httpClient: HttpClient) {
     suspend fun fetch(): FetchUserResponse {
@@ -42,6 +39,7 @@ class KtorUserRemoteDataSource(private val httpClient: HttpClient) {
             throw RuntimeException("KtorUserRemoteDataSource: Server Error")
         }
     }
+
     suspend fun removeWish(request: RemoveWishRequest) {
         try {
             val response = httpClient.delete {
@@ -59,5 +57,19 @@ class KtorUserRemoteDataSource(private val httpClient: HttpClient) {
         }
     }
 
-
+    suspend fun getUserList(): List<FetchUserListItemResponse> {
+        try {
+            val response = httpClient.get {
+                url {
+                    path("user/all")
+                }
+            }
+            if (response.status.isSuccess()) {
+                return response.body()
+            }
+            throw RuntimeException("KtorUserRemoteDataSource: Get User List Invalid. Response: $response")
+        } catch (e: RuntimeException) {
+            throw RuntimeException("KtorUserRemoteDataSource: Server Error")
+        }
+    }
 }

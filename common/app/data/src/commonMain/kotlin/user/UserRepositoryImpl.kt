@@ -17,4 +17,8 @@ class UserRepositoryImpl(
     override suspend fun removeWish(request: RemoveWishRequest) {
         return ktorUserRemoteDataSource.removeWish(request)
     }
+
+    override suspend fun fetchUserList(): List<FetchUserListItemResponse> {
+        return ktorUserRemoteDataSource.getUserList()
+    }
 }

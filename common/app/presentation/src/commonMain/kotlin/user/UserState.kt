@@ -1,9 +1,6 @@
 package user
 
-import user.models.AddWishStatus
-import user.models.FetchUserStatus
-import user.models.RemoveWishStatus
-import user.models.UserWish
+import user.models.*
 
 data class UserState(
     val id: Int?,
@@ -14,5 +11,7 @@ data class UserState(
     val addWishStatus: AddWishStatus,
     val removeWishStatus: RemoveWishStatus,
     val wishes: List<UserWish>?,
+    val users: List<FetchUserListItemResponse>,
+    val fetchUserListStatus: FetchUserListStatus,
     val currentWishValue: String,
 )

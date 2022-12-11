@@ -54,6 +54,7 @@ fun Host(navController: NavHostController) {
         }
         composable(Routes.Profile) { ProfileScreen(viewModel = santaViewModel) }
         composable(Routes.ProfileWish) { ProfileWishScreen(viewModel = userViewModel) }
+        composable(Routes.ProfileUserList) {ProfileUserList(viewModel = userViewModel)}
 
         composable(Routes.FirstScreen) {
             FirstScreen(
