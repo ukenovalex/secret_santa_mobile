@@ -8,3 +8,5 @@ captures
 .cxx
 local.properties
 xcuserdata
+secret-santa-key.keystore
+keystore.properties

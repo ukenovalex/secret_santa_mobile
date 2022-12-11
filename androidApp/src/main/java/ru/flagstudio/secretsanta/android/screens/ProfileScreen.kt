@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.adeo.kviewmodel.compose.observeAsState
 import ru.flagstudio.secretsanta.android.R
-import ru.flagstudio.secretsanta.android.ui.AppButton
 import ru.flagstudio.secretsanta.android.ui.AppDialogError
 import ru.flagstudio.secretsanta.android.ui.GiftedWishListDialog
 import ru.flagstudio.secretsanta.android.ui.SecondaryButton

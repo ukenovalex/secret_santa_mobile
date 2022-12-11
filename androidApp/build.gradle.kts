@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.properties.loadProperties
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -30,9 +32,19 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    val keystoreProperties = loadProperties("keystore.properties")
+    signingConfigs {
+        create("release") {
+            storeFile = file(keystoreProperties["SANTA_UPLOAD_STORE_FILE"] as String)
+            storePassword = keystoreProperties["SANTA_UPLOAD_STORE_PASSWORD"] as String
+            keyAlias = keystoreProperties["SANTA_UPLOAD_KEY_ALIAS"] as String
+            keyPassword = keystoreProperties["SANTA_UPLOAD_KEY_PASSWORD"] as String
+        }
+    }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            signingConfig = signingConfigs["release"]
         }
     }
 }
