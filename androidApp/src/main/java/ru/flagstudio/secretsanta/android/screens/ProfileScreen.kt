@@ -95,7 +95,6 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
-                            .offset(y = 20.dp)
                             .fillMaxWidth()
                     ) {
                         Text(
@@ -113,8 +112,8 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                             color = Colors.TextColor,
                             modifier = Modifier.rotate(-3.92f)
                         )
+                        Spacer(modifier = Modifier.height(12.dp))
                         if (state.value.giftedWishList.isNotEmpty()) {
-                            Spacer(modifier = Modifier.height(12.dp))
                             SecondaryButton(
                                 onClick = { viewModel.obtainEvent(SantaEvent.ShowGiftedWishDialog) },
                                 title = "Интересы",
