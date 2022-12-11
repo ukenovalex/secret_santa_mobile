@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.adeo.kviewmodel.compose.observeAsState
@@ -55,13 +56,23 @@ fun WishesComponent(viewModel: UserViewModel) {
             viewModel.obtainEvent(UserEvent.ChangeRemoveWishStatus(RemoveWishStatus.EMPTY))
         }
         Box(modifier = Modifier.fillMaxHeight(0.3f)) {
-            AppTitle(text = "Расскажи о своем подарке мечты")
+            AppTitle(text = "Скажи, что ты хочешь от санты?")
         }
         AppTextField(
             value = state.value.currentWishValue,
             onValueChange = { viewModel.obtainEvent(UserEvent.InputWish(it)) },
-            label = "Интересует",
-            placeholder = ""
+            label = "Хочу",
+            placeholder = "Название подарка"
+        )
+        Text(
+            textAlign = TextAlign.Start,
+            color = Colors.TextColor,
+            fontSize = 14.sp,
+            fontFamily = Fonts.RobotoLight,
+            text = "Будь краток. У тебя 12 символов.",
+            modifier = Modifier
+                .padding(vertical = 3.dp)
+                .fillMaxWidth()
         )
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
             SecondaryButton(

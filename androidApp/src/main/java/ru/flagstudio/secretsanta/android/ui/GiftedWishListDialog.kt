@@ -46,14 +46,13 @@ fun GiftedWishListDialog(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Я прошу у Санты антидепрессанты. А ещё:",
+                        text = "Дорогой санта! Подари мне на новый год:",
                         color = Colors.AccentColor,
                         fontSize = 16.sp,
                         fontFamily = Fonts.Pacifico
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Box(modifier = Modifier.height(120.dp)) {
-
                         Box(
                             Modifier
                                 .verticalScroll(state = state)
@@ -68,6 +67,7 @@ fun GiftedWishListDialog(
                         }
 
                     }
+                    AppButton(onClick = onHide, title = "Учту")
                 }
             }
         }

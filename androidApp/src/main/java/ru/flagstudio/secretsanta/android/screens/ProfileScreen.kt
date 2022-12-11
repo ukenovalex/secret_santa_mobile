@@ -30,10 +30,8 @@ fun ProfileScreen(viewModel: SantaViewModel) {
     val state = viewModel.viewStates().observeAsState()
 
 
-    LaunchedEffect(state.value.fetchStatus) {
-        if (state.value.fetchStatus == SantaStatus.EMPTY) {
-            viewModel.obtainEvent(SantaEvent.FetchSantaInfo)
-        }
+    LaunchedEffect(Unit) {
+        viewModel.obtainEvent(SantaEvent.FetchSantaInfo)
     }
 
     if (state.value.fetchStatus == SantaStatus.SUCCESS) {
@@ -73,8 +71,7 @@ fun ProfileScreen(viewModel: SantaViewModel) {
             }
             if (!state.value.isSanta) {
                 Column(
-                    verticalArrangement = Arrangement.Center,
-                    modifier = Modifier.fillMaxHeight()
+                    verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxHeight()
                 ) {
                     SecondaryButton(
                         onClick = { viewModel.obtainEvent(SantaEvent.BecomeSanta) },
@@ -116,12 +113,14 @@ fun ProfileScreen(viewModel: SantaViewModel) {
                             color = Colors.TextColor,
                             modifier = Modifier.rotate(-3.92f)
                         )
-                        Spacer(modifier = Modifier.height(12.dp))
-                        SecondaryButton(
-                            onClick = { viewModel.obtainEvent(SantaEvent.ShowGiftedWishDialog) },
-                            title = "Интересы",
-                            width = 250.dp
-                        )
+                        if (state.value.giftedWishList.isNotEmpty()) {
+                            Spacer(modifier = Modifier.height(12.dp))
+                            SecondaryButton(
+                                onClick = { viewModel.obtainEvent(SantaEvent.ShowGiftedWishDialog) },
+                                title = "Интересы",
+                                width = 250.dp
+                            )
+                        }
                     }
                     Row(
                         horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth()
@@ -140,6 +139,4 @@ fun ProfileScreen(viewModel: SantaViewModel) {
             }
         }
     }
-
-
 }

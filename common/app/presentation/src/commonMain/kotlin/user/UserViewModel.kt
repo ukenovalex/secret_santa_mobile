@@ -63,7 +63,9 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
     }
 
     private fun inputWish(value: String) {
-        viewState = viewState.copy(currentWishValue = value)
+        if (value.length <= MAX_WISH_LENGTH) {
+            viewState = viewState.copy(currentWishValue = value)
+        }
     }
 
     private fun fetchUserInfo() {
@@ -123,5 +125,9 @@ class UserViewModel : BaseSharedViewModel<UserState, Nothing, UserEvent>(
                 println(e.message)
             }
         }
+    }
+
+    companion object {
+        const val MAX_WISH_LENGTH = 12
     }
 }
