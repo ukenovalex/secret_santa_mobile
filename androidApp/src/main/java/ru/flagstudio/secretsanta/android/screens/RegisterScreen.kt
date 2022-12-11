@@ -34,12 +34,10 @@ fun RegisterScreen(
         ) {
             viewModel.obtainEvent(RegisterEvent.ChangeFetchStatus(RegisterStatus.EMPTY))
         }
+        AppTitle("Хочешь подарок? Создай аккаунт!")
         Column(
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxHeight(0.5f)
+            verticalArrangement = Arrangement.SpaceEvenly,
         ) {
-            AppTitle("Хочешь подарок? Создай аккаунт!")
-            Spacer(modifier = Modifier.height(24.dp))
             AppTextField(
                 value = state.value.name,
                 onValueChange = {
@@ -71,7 +69,7 @@ fun RegisterScreen(
 
             )
         }
-        Column(verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxHeight(0.5f)) {
+        Column(verticalArrangement = Arrangement.Center) {
             Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
                 AppButton(
                     width = 180.dp,

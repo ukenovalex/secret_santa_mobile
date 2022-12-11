@@ -34,6 +34,7 @@ fun WishesComponent(viewModel: UserViewModel) {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxHeight(0.5f)
     ) {
         AppDialogError(
             isShow = state.value.fetchUserStatus == FetchUserStatus.ERROR,
@@ -53,8 +54,9 @@ fun WishesComponent(viewModel: UserViewModel) {
         ) {
             viewModel.obtainEvent(UserEvent.ChangeRemoveWishStatus(RemoveWishStatus.EMPTY))
         }
-        AppTitle(text = "Расскажи о своем подарке мечты")
-        Spacer(modifier = Modifier.height(62.dp))
+        Box(modifier = Modifier.fillMaxHeight(0.3f)) {
+            AppTitle(text = "Расскажи о своем подарке мечты")
+        }
         AppTextField(
             value = state.value.currentWishValue,
             onValueChange = { viewModel.obtainEvent(UserEvent.InputWish(it)) },
