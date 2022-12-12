@@ -20,7 +20,7 @@ class KtorRegisterRemoteDataSource(val httpClient: HttpClient) {
                 return response.body()
             }
             throw RuntimeException("KtorRegisterRemoteDataSource: Register User Invalid. Response: $response")
-        } catch (e: RuntimeException) {
+        } catch (e: Exception) {
             throw RuntimeException("KtorRegisterRemoteDataSource: Server Error: Status code: 0")
         }
     }

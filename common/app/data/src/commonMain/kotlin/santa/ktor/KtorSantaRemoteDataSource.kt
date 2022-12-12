@@ -18,7 +18,7 @@ class KtorSantaRemoteDataSource(private val httpClient: HttpClient) {
                 return response.body()
             }
             throw RuntimeException("KtorSantaRemoteDataSource: Fetch Donee Invalid. Response: $response")
-        } catch (e: RuntimeException) {
+        } catch (e: Exception) {
             throw RuntimeException("KtorSantaRemoteDataSource: Server Error")
         }
     }
@@ -34,7 +34,7 @@ class KtorSantaRemoteDataSource(private val httpClient: HttpClient) {
                 return response.body()
             }
             throw RuntimeException("KtorSantaRemoteDataSource: Become Santa Invalid. Response: $response")
-        } catch (e: RuntimeException) {
+        } catch (e: Exception) {
             throw RuntimeException("KtorSantaRemoteDataSource: Server Error")
         }
     }

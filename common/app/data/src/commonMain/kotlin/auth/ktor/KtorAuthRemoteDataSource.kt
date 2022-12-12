@@ -36,7 +36,7 @@ class KtorAuthRemoteDataSource(val httpClient: HttpClient) {
                 return true
             }
             return false
-        } catch(e: RuntimeException) {
+        } catch(e: Exception) {
             return false
         }
     }

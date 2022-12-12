@@ -18,7 +18,7 @@ class KtorUserRemoteDataSource(private val httpClient: HttpClient) {
                 return response.body()
             }
             throw RuntimeException("KtorUserRemoteDataSource: Fetch User Invalid. Response: $response")
-        } catch (e: RuntimeException) {
+        } catch (e: Exception) {
             throw RuntimeException("KtorUserRemoteDataSource: Server Error")
         }
     }
@@ -35,7 +35,7 @@ class KtorUserRemoteDataSource(private val httpClient: HttpClient) {
                 return response.body()
             }
             throw RuntimeException("KtorUserRemoteDataSource: Add Wish Invalid. Response: $response")
-        } catch (e: RuntimeException) {
+        } catch (e: Exception) {
             throw RuntimeException("KtorUserRemoteDataSource: Server Error")
         }
     }
@@ -52,7 +52,7 @@ class KtorUserRemoteDataSource(private val httpClient: HttpClient) {
                 return
             }
             throw RuntimeException("KtorUserRemoteDataSource: Delete Wish Invalid. Response: $response")
-        } catch (e: RuntimeException) {
+        } catch (e: Exception) {
             throw RuntimeException("KtorUserRemoteDataSource: Server Error")
         }
     }
@@ -68,7 +68,7 @@ class KtorUserRemoteDataSource(private val httpClient: HttpClient) {
                 return response.body()
             }
             throw RuntimeException("KtorUserRemoteDataSource: Get User List Invalid. Response: $response")
-        } catch (e: RuntimeException) {
+        } catch (e: Exception) {
             throw RuntimeException("KtorUserRemoteDataSource: Server Error")
         }
     }
