@@ -36,6 +36,7 @@ AuthViewModel - ViewModel для авторизации. Содержит в с�
     val password: String, // Пароль пользователя
     val loginStatus: LoginStatus, // Статус логина (см. LoginStatus)
     val validForm: Boolean // true - если введенный логин и пароль валидны
+    val isUserExist: Boolean // если true навигируемся на профайл если false навигируемся на ввод интересов
     ```
   - AuthEvent
     ```
@@ -56,33 +57,11 @@ AuthViewModel - ViewModel для авторизации. Содержит в с�
       ERROR // Когда произошла какая то ошибка в процессе любой операции
     }
     ```
+    
+    
+# Регистрации и ввода имени больше нет!!
   
-  RegisterViewModel - ViewModel для регистрации. Содержит в себе:
-  - RegisterState
-    ```
-    val name: String, // Имя пользователя
-    val email: String, // E-mail пользователя
-    val password: String, // Пароль пользователя
-    val validForm: Boolean, // true - если введенные имя, логин и пароль валидны
-    val status: RegisterStatus // Статус регистрации (см. RegisterStatus)
-    ```
-  - RegisterEvent
-    ```
-    data class InputName(val value: String) : RegisterEvent() // Событие ввода имени
-    data class InputEmail(val value: String) : RegisterEvent() // Событие ввода емайла
-    data class InputPassword(val value: String) : RegisterEvent() // Событие ввода пароля
-    data class ChangeFetchStatus(val status: RegisterStatus) : RegisterEvent()
-    object PressRegister : RegisterEvent() // Событие регистрации (всё летит на сервер)
-    ```
-  - RegisterStatus
-    ```
-    enum class RegisterStatus {
-      EMPTY,
-      LOADING,
-      SUCCESS,
-      ERROR
-    }
-    ```
+  
 UserViewModel - ViewModel для пользователя. Содержит в себе:
   - 
   ```
