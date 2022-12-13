@@ -6,9 +6,10 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import register.models.RegisterRequest
+import register.models.RegisterResponse
 
-class KtorRegisterRemoteDataSource(val httpClient: HttpClient) {
-    suspend fun fetchRegister(request: RegisterRequest) {
+class KtorRegisterRemoteDataSource(private val httpClient: HttpClient) {
+    suspend fun fetchRegister(request: RegisterRequest): RegisterResponse {
         try {
             val response = httpClient.post {
                 url {

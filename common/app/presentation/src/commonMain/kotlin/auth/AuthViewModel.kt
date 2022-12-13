@@ -6,19 +6,23 @@ import auth.models.LoginResponse
 import com.adeo.kviewmodel.BaseSharedViewModel
 import di.Inject
 import kotlinx.coroutines.launch
+import register.RegisterRepository
+import register.models.RegisterRequest
 import utils.Utils
 
 val initialState = AuthState(
     email = "",
     password = "",
     loginStatus = LoginStatus.EMPTY,
-    validForm = false
+    validForm = false,
+    isUserExist = false,
 )
 
 class AuthViewModel : BaseSharedViewModel<AuthState, Nothing, AuthEvent>(
     initialState = initialState
 ) {
     private val repository: AuthRepository = Inject.instance()
+    private val registerRepository: RegisterRepository = Inject.instance()
     private val utils: Utils = Inject.instance()
 
 
@@ -62,21 +66,35 @@ class AuthViewModel : BaseSharedViewModel<AuthState, Nothing, AuthEvent>(
     private fun pressLogin() {
         viewModelScope.launch {
             try {
-                changeLoginStatus(LoginStatus.LOADING)
-                val response: LoginResponse = repository.login(
-                    LoginRequest(
+                viewState = viewState.copy(loginStatus = LoginStatus.LOADING)
+                val response = registerRepository.fetchRegister(
+                    RegisterRequest(
                         email = viewState.email,
                         password = viewState.password
                     )
                 )
-                if (response.jwt.isNotBlank()) {
-                    repository.saveToken(response.jwt)
-                    changeLoginStatus(LoginStatus.SUCCESS)
-                }
+                fetchLogin(email = viewState.email, password = viewState.password)
+                viewState = viewState.copy(loginStatus = LoginStatus.SUCCESS, isUserExist = response.isExist)
             } catch (e: RuntimeException) {
-                changeLoginStatus(LoginStatus.ERROR)
+                viewState = viewState.copy(loginStatus = LoginStatus.ERROR)
                 println(e.message)
             }
+        }
+    }
+    private suspend fun fetchLogin(email: String, password: String) {
+        try {
+            val response: LoginResponse = repository.login(
+                LoginRequest(
+                    email = email,
+                    password = password
+                )
+            )
+            if (response.jwt.isNotBlank()) {
+                repository.saveToken(response.jwt)
+            }
+        } catch (e: RuntimeException) {
+            viewState = viewState.copy(loginStatus = LoginStatus.ERROR)
+            println(e.message)
         }
     }
 

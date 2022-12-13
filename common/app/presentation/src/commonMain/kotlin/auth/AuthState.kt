@@ -7,4 +7,5 @@ data class AuthState(
     val password: String,
     val loginStatus: LoginStatus,
     val validForm: Boolean,
+    val isUserExist: Boolean
 )

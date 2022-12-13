@@ -5,7 +5,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import auth.AuthViewModel
-import register.RegisterViewModel
 import ru.flagstudio.secretsanta.android.screens.*
 import santa.SantaViewModel
 import user.UserViewModel
@@ -13,26 +12,24 @@ import user.UserViewModel
 @Composable
 fun Host(navController: NavHostController) {
     val authViewModel = AuthViewModel()
-    val registerViewModel = RegisterViewModel()
     val userViewModel = UserViewModel()
     val santaViewModel = SantaViewModel()
 
     NavHost(navController = navController, startDestination = Routes.FirstScreen) {
         composable(Routes.Auth) {
-            AuthScreen(viewModel = authViewModel, onNavigateToRegister = {
-                navController.navigate(Routes.Register)
-            }, onNavigateToCongrat = {
-                navController.navigate(Routes.Congrat) {
-                    popUpTo(Routes.Auth) {
-                        inclusive = true
+            AuthScreen(
+                viewModel = authViewModel,
+                onNavigateToWishScreen = {
+                    navController.navigate(Routes.RegisterWish)
+                },
+                onNavigateToCongrat = {
+                    navController.navigate(Routes.Congrat) {
+                        popUpTo(Routes.Auth) {
+                            inclusive = true
+                        }
                     }
                 }
-            })
-        }
-        composable(Routes.Register) {
-            RegisterScreen(viewModel = registerViewModel, navigateToRegistrationWish = {
-                navController.navigate(Routes.RegisterWish)
-            })
+            )
         }
         composable(Routes.RegisterWish) {
             RegistrationWishScreen(viewModel = userViewModel, navigateToCongrat = {
@@ -54,7 +51,7 @@ fun Host(navController: NavHostController) {
         }
         composable(Routes.Profile) { ProfileScreen(viewModel = santaViewModel) }
         composable(Routes.ProfileWish) { ProfileWishScreen(viewModel = userViewModel) }
-        composable(Routes.ProfileUserList) {ProfileUserList(viewModel = userViewModel)}
+        composable(Routes.ProfileUserList) { ProfileUserList(viewModel = userViewModel) }
 
         composable(Routes.FirstScreen) {
             FirstScreen(

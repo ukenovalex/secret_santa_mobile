@@ -16,14 +16,18 @@ import ru.flagstudio.secretsanta.android.ui.*
 @Composable
 fun AuthScreen(
     viewModel: AuthViewModel,
-    onNavigateToRegister: () -> Unit,
+    onNavigateToWishScreen: () -> Unit,
     onNavigateToCongrat: () -> Unit
 ) {
     val state = viewModel.viewStates().observeAsState()
 
     LaunchedEffect(state.value.loginStatus) {
         if (state.value.loginStatus == LoginStatus.SUCCESS) {
-            onNavigateToCongrat()
+            if (state.value.isUserExist) {
+                onNavigateToCongrat()
+            } else {
+                onNavigateToWishScreen()
+            }
         }
     }
 
@@ -68,11 +72,6 @@ fun AuthScreen(
                     onClick = { viewModel.obtainEvent(AuthEvent.PressLogin) },
                     title = "Войти",
                     disabled = !state.value.validForm || state.value.loginStatus == LoginStatus.LOADING,
-                )
-                AppButton(
-                    onClick = { onNavigateToRegister() },
-                    title = "Создать",
-                    disabled = state.value.loginStatus == LoginStatus.LOADING
                 )
             }
         }

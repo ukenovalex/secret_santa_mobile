@@ -1,8 +1,8 @@
 package register.models
+
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RegisterRequest(
-    val email: String,
-    val password: String,
+data class RegisterResponse(
+    val isExist: Boolean
 )
