@@ -27,7 +27,6 @@
 		C7519EAA293FC2530045AC3E /* roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7519EA4293FC2520045AC3E /* roboto_medium.ttf */; };
 		C7519EAC293FC2530045AC3E /* roboto_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7519EA6293FC2530045AC3E /* roboto_light.ttf */; };
 		C7519EAE293FC3B00045AC3E /* inria_sans_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7519EA5293FC2530045AC3E /* inria_sans_bold.ttf */; };
-		C7EAB1DF294114C000BCA4D9 /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EAB1DE294114C000BCA4D9 /* RegisterScreen.swift */; };
 		C7EAB1E12941192000BCA4D9 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EAB1E02941192000BCA4D9 /* WelcomeScreen.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +54,6 @@
 		C7519EA5293FC2530045AC3E /* inria_sans_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = inria_sans_bold.ttf; sourceTree = "<group>"; };
 		C7519EA6293FC2530045AC3E /* roboto_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_light.ttf; sourceTree = "<group>"; };
 		C7897A0361EB2808FE254055 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C7EAB1DE294114C000BCA4D9 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 		C7EAB1E02941192000BCA4D9 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,7 +170,6 @@
 			children = (
 				AD667E54293B5E3D00776536 /* AuthScreen.swift */,
 				AD667E56293B5EB300776536 /* UserProfileScreen.swift */,
-				C7EAB1DE294114C000BCA4D9 /* RegisterScreen.swift */,
 				C7EAB1E02941192000BCA4D9 /* WelcomeScreen.swift */,
 			);
 			path = Screens;
@@ -314,7 +311,6 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				6A85DC0829266B7F005A7AE3 /* ViewModel.swift in Sources */,
 				C7EAB1E12941192000BCA4D9 /* WelcomeScreen.swift in Sources */,
-				C7EAB1DF294114C000BCA4D9 /* RegisterScreen.swift in Sources */,
 				ADC2DE99293B71B1000DCAA5 /* CommonButton.swift in Sources */,
 				AD280D7E293B6A7300110042 /* MainTemplate.swift in Sources */,
 				6A85DC0B29269F3F005A7AE3 /* CommonTextField.swift in Sources */,

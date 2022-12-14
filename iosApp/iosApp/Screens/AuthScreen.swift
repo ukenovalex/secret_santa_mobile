@@ -56,7 +56,8 @@ class AuthScreen_Previews: PreviewProvider {
             email: "test@test.test",
             password: "",
             loginStatus: LoginStatus.success,
-            validForm: false
+            validForm: false,
+            isUserExist: false
         )
         AuthView(viewState: viewState) { event in }
     }
@@ -67,7 +68,8 @@ class AuthScreen_Previews: PreviewProvider {
                     email: "test@test.test",
                     password: "",
                     loginStatus: LoginStatus.success,
-                    validForm: false
+                    validForm: false,
+                    isUserExist: false
             )
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             windowScene?.windows.first?.rootViewController =
