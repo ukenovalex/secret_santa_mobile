@@ -28,6 +28,7 @@
 		C7519EAC293FC2530045AC3E /* roboto_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7519EA6293FC2530045AC3E /* roboto_light.ttf */; };
 		C7519EAE293FC3B00045AC3E /* inria_sans_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7519EA5293FC2530045AC3E /* inria_sans_bold.ttf */; };
 		C7EAB1E12941192000BCA4D9 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EAB1E02941192000BCA4D9 /* WelcomeScreen.swift */; };
+		C7F16AC2294A211A003A6BBF /* welcome-image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F16AC1294A211A003A6BBF /* welcome-image.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		C7519EA6293FC2530045AC3E /* roboto_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_light.ttf; sourceTree = "<group>"; };
 		C7897A0361EB2808FE254055 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C7EAB1E02941192000BCA4D9 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
+		C7F16AC1294A211A003A6BBF /* welcome-image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "welcome-image.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,9 +193,18 @@
 		C7519EAF293FC6450045AC3E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C7F16AC0294A205F003A6BBF /* Images */,
 				C7519EAD293FC2590045AC3E /* Fonts */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C7F16AC0294A205F003A6BBF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C7F16AC1294A211A003A6BBF /* welcome-image.jpg */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +279,7 @@
 				C7519EA8293FC2530045AC3E /* pacifico.ttf in Resources */,
 				C7519EA7293FC2530045AC3E /* roboto.ttf in Resources */,
 				C7519EAE293FC3B00045AC3E /* inria_sans_bold.ttf in Resources */,
+				C7F16AC2294A211A003A6BBF /* welcome-image.jpg in Resources */,
 				C7519EA9293FC2530045AC3E /* roboto_bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

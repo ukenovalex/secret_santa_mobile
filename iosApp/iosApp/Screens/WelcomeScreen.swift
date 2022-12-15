@@ -7,50 +7,46 @@
 //
 
 import SwiftUI
-import SharedSDK
 
 struct WelcomeView: View {
     var body: some View {
-        Text("WelcomeView")
+        NavigationView {
+            ZStack {
+                Image("welcome-image")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .edgesIgnoringSafeArea(.all)
+                VStack() {
+                    Spacer()
+                    Text("Ho Ho Ho! You little bitch!")
+                        .font(.custom("Pacifico", size: 48))
+                        .multilineTextAlignment(.center)
+                        .rotationEffect(Angle(degrees: -5))
+                        .padding(.bottom, 50)
+                    NavigationLink(destination: AuthScreen(), label: <#T##() -> View#>)
+                    Image(systemName: "hand.tap")
+                        .font(.largeTitle)
+                    Text("Tap Here")
+                        .font(.custom("Pacifico", size: 24))
+                }
+                .foregroundColor(.AppRed)
+                .padding(.horizontal, 24)
+                .padding(.bottom, 64)
+            }
+        }
     }
 }
-//
-//struct RegisterScreen: View {
-//    private let viewModel = RegisterViewModel()
-//
-//    var body: some View {
-//        ObservingView(statePublisher: statePublisher(viewModel.viewStates())) { viewState in
-//            RegisterView(viewState: viewState) { event in
-//                viewModel.obtainEvent(viewEvent: event)
-//            }
-//        }
-//    }
-//}
 
-//class RegisterScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let viewState = RegisterState(
-//            name: "Yegor",
-//            email: "test@test.test",
-//            password: "",
-//            validForm: false,
-//            status: RegisterStatus.success
-//        )
-//        RegisterView(viewState: viewState) { event in }
-//    }
-//
-//    #if DEBUG
-//        @objc class func injected() {
-//            let viewState = RegisterState(
-//                    name: "Yegor",
-//                    email: "test@test.test",
-//                    password: "",
-//                    validForm: false,
-//                    status: RegisterStatus.success
-//            )
-//            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-//            windowScene?.windows.first?.rootViewController =
-//                    UIHostingController(rootView: RegisterView(viewState: viewState) { event in })
-//        }
-//    #endif
-//}
+struct WelcomeScreen: View {
+
+    var body: some View {
+        WelcomeView()
+    }
+}
+
+class WelcomeScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        WelcomeScreen()
+    }
+}

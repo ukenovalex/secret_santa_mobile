@@ -22,17 +22,23 @@ struct AuthView: View {
                 .foregroundColor(.AppWhite)
                 .font(.custom("InriaSans-Bold", size: 36))
             Spacer()
-            CommonTextField(label: "Email", hint: "example@gmail.com", enabled: true, isSecure: false){newValue in
-                eventHandler(.InputEmail(value: newValue))
-            }.padding(.bottom, 20)
-            CommonTextField(label: "Password", hint: "", enabled: true, isSecure: true) { newValue in
+            CommonTextField(label: "Email",
+                            hint: "example@gmail.com",
+                            enabled: true,
+                            isSecure: false) { newValue in
+                    eventHandler(.InputEmail(value: newValue))
+                }
+            .padding(.bottom, 20)
+            CommonTextField(label: "Password",
+                            hint: "",
+                            enabled: true,
+                            isSecure: true) { newValue in
                 eventHandler(.InputPassword(value: newValue))
             }
             Spacer()
-            CommonButton(action: {eventHandler(.PressLogin())}, disabled: !viewState.validForm) {
-            Text("Done")
-                .foregroundColor(Color.secondary)
-            }
+            CommonButton(label: "Done",
+                         disabled: !viewState.validForm,
+                         action: {eventHandler(.PressLogin())})
             Spacer()
         }
     }
