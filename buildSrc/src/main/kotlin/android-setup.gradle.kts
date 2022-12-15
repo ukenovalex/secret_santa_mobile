@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.properties.loadProperties
+
 plugins {
     id("com.android.library")
 }
@@ -12,6 +14,18 @@ android {
 
     buildFeatures {
         compose = true
+    }
+
+    signingConfigs {
+        create("release") {
+            try {
+                val keystoreProperties = loadProperties("keystore.properties")
+                storeFile = file(keystoreProperties["SANTA_UPLOAD_STORE_FILE"] as String)
+                storePassword = keystoreProperties["SANTA_UPLOAD_STORE_PASSWORD"] as String
+                keyAlias = keystoreProperties["SANTA_UPLOAD_KEY_ALIAS"] as String
+                keyPassword = keystoreProperties["SANTA_UPLOAD_KEY_PASSWORD"] as String
+            } catch (_: Exception) {}
+        }
     }
 
     composeOptions {

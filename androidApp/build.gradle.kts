@@ -9,7 +9,7 @@ android {
     namespace = "ru.flagstudio.secretsanta.android"
     compileSdk = 33
     defaultConfig {
-        applicationId = "ru.flagstudio.secretsanta.android"
+        applicationId = "ru.flagstudio.secretsanta"
         minSdk = 23
         targetSdk = 33
         versionCode = 1
