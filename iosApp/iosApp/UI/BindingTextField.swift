@@ -81,7 +81,13 @@ struct BindingTextField: View {
             if (v != value) {
                 value = v
             }
-                    }
+        }
+        .onChange(of: value) { v in
+            if (v.count - 1 == currentValue.count + 1) {
+                value = currentValue
+            }
+        }
+
         .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24))
         
     }

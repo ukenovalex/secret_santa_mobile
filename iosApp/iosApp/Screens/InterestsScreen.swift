@@ -42,6 +42,12 @@ struct InterestsView: View {
                         Text(viewState.wishes![index].message).onTapGesture {
                             eventHandler(.RemoveWish(id: viewState.wishes![index].id))
                         }
+                        .foregroundColor(.AppRed)
+                        .font(.custom("Roboto-Medium", size: 16))
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 13)
+                        .background(Color.AppWhite.cornerRadius(20))
+                        
                     }
                 }
             }
