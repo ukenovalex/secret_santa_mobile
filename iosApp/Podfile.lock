@@ -1,16 +1,23 @@
 PODS:
+  - UIPilot (2.0.2)
   - umbrella_ios (0.0.1)
 
 DEPENDENCIES:
+  - UIPilot (~> 2.0.2)
   - umbrella_ios (from `../common/umbrella-ios`)
+
+SPEC REPOS:
+  trunk:
+    - UIPilot
 
 EXTERNAL SOURCES:
   umbrella_ios:
     :path: "../common/umbrella-ios"
 
 SPEC CHECKSUMS:
+  UIPilot: dec727d11749dcb34654df4f8c94b98b29903566
   umbrella_ios: 690d4980eccc90f7949ea4f2ae6c133fe40b1899
 
-PODFILE CHECKSUM: f23e5f7230a6770e05874680e315d9d884ca3d90
+PODFILE CHECKSUM: db22f2397f1f9008726101323e0eee9140d5ec26
 
 COCOAPODS: 1.11.3

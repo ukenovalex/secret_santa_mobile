@@ -1,34 +1,33 @@
 //
-//  UserProfileScreen.swift
+//  InterestsScreen.swift
 //  iosApp
 //
-//  Created by Slava Rykov on 03.12.2022.
+//  Created by Alex Ukenov on 15.12.2022.
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
 import SwiftUI
 import SharedSDK
 
-struct UserView: View {
+
+struct InterestsView: View {
     let viewState: UserState
     let eventHandler: (UserEvent) -> Void
     
     var body: some View {
         MainTemplate() {
-            if (viewState.name != nil) {
-                Text(viewState.name!)
-            }
-            Button(action: {eventHandler(.GetUserInfo())}, label: {Text("Get User Info")})
+            Text("Interests")
         }
     }
 }
 
 
-struct UserProfileScreen: View {
+struct InterestsScreen: View {
     let viewModel = UserViewModel()
+    
     var body: some View {
         ObservingView(statePublisher: statePublisher(viewModel.viewStates())) { viewState in
-            UserView(viewState: viewState) { event in
+            InterestsView(viewState: viewState){ event in
                 viewModel.obtainEvent(viewEvent: event)
             }
         }

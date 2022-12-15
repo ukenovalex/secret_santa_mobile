@@ -8,11 +8,14 @@
 
 import SwiftUI
 import SharedSDK
+import UIPilot
 
 struct AuthView: View {
     let viewState: AuthState
     let eventHandler: (AuthEvent) -> Void
     private let viewModel = UserViewModel()
+    
+    @EnvironmentObject var pilot: UIPilot<AppRoute>
         
     var body: some View {
         MainTemplate() {
@@ -41,12 +44,21 @@ struct AuthView: View {
                          action: {eventHandler(.PressLogin())})
             Spacer()
         }
+        .onChange(of: viewState.loginStatus) { status in
+            if (status == LoginStatus.success) {
+                if (viewState.isUserExist == true) {
+                    pilot.popTo(.Auth, inclusive: true)
+                    pilot.push(.Profile)
+                } else {
+                    pilot.push(.AuthInterests)
+                }
+            }
+        }
     }
 }
 
 struct AuthScreen: View {
     private let viewModel = AuthViewModel()
-    
     var body: some View {
         ObservingView(statePublisher: statePublisher(viewModel.viewStates())) { viewState in
             AuthView(viewState: viewState) { event in
