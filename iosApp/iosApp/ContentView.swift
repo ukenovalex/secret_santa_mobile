@@ -4,6 +4,6 @@ import SharedSDK
 struct ContentView: View {
 
 	var body: some View {
-        AuthScreen()
+        WelcomeScreen()
 	}
 }
