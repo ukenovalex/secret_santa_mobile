@@ -3,7 +3,7 @@ import SharedSDK
 import UIPilot
 
 struct ContentView: View {
-    @StateObject var pilot = UIPilot(initial: AppRoute.Welcome)
+    @StateObject var pilot = UIPilot(initial: AppRoute.AuthInterests)
     
 	var body: some View {
             UIPilotHost(pilot) { route in

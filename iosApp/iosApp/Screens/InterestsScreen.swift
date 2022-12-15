@@ -16,7 +16,39 @@ struct InterestsView: View {
     
     var body: some View {
         MainTemplate() {
-            Text("Interests")
+            Spacer()
+            Text("Скажи, что ты хочешь от санты?")
+                .multilineTextAlignment(.center)
+                .foregroundColor(.AppWhite)
+                .font(.custom("InriaSans-Bold", size: 36))
+            Spacer()
+            BindingTextField(
+                currentValue: viewState.currentWishValue,
+                label: "Хочу",
+                            hint: "Название подарка",
+                            enabled: true,
+                            isSecure: false) { newValue in
+                eventHandler(.InputWish(value: newValue))
+                }
+            .padding(.bottom, 20)
+            Spacer()
+            CommonButton(label: "Добавить",
+                         disabled: false,
+                         action: {eventHandler(.AddWish())})
+            Spacer()
+            HStack {
+                if (viewState.wishes != nil) {
+                    ForEach(0..<viewState.wishes!.count,id: \.self) { index in
+                        Text(viewState.wishes![index].message).onTapGesture {
+                            eventHandler(.RemoveWish(id: viewState.wishes![index].id))
+                        }
+                    }
+                }
+            }
+            Spacer()
+        }
+        .onAppear() {
+            eventHandler(.GetUserInfo())
         }
     }
 }
