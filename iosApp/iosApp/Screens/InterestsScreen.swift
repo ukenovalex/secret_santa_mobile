@@ -59,7 +59,6 @@ struct InterestsView: View {
                 CommonButton(label: "Хочу",
                              disabled: false,
                              action: {
-                    pilot.pop()
                     pilot.push(.TabNavigator)
                     
                 }

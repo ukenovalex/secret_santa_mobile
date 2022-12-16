@@ -13,11 +13,11 @@ kotlin {
         ios.deploymentTarget = "14.0"
 
         framework {
+            isStatic = false
             transitiveExport = false
             baseName = "SharedSDK"
             export(project(":common:core"))
             export(project(":common:umbrella-core"))
-            export(project(":common:app:api"))
             export(project(":common:app:presentation"))
         }
     }
@@ -27,7 +27,6 @@ kotlin {
             dependencies {
                 implementation(project(":common:core"))
                 implementation(project(":common:umbrella-core"))
-                implementation(project(":common:app:api"))
                 implementation(project(":common:app:presentation"))
             }
         }
@@ -36,7 +35,6 @@ kotlin {
             dependencies {
                 api(project(":common:core"))
                 api(project(":common:umbrella-core"))
-                api(project(":common:app:api"))
                 api(project(":common:app:presentation"))
             }
         }

@@ -20,11 +20,22 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>pacifico.ttf</string>
+		<string>inria_sans_bold.ttf</string>
+		<string>roboto_bold.ttf</string>
+		<string>roboto_light.ttf</string>
+		<string>roboto_medium.ttf</string>
+		<string>roboto.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
+	<key>UILaunchScreen</key>
+	<dict/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -42,16 +53,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>pacifico.ttf</string>
-		<string>inria_sans_bold.ttf</string>
-		<string>roboto_bold.ttf</string>
-		<string>roboto_light.ttf</string>
-		<string>roboto_medium.ttf</string>
-		<string>roboto.ttf</string>
-	</array>
-	<key>UILaunchScreen</key>
-	<dict/>
 </dict>
 </plist>

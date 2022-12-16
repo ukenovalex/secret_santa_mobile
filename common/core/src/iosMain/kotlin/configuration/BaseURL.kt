@@ -1,3 +1,3 @@
 package configuration
 
-actual val BaseURL = "http://localhost:8000/api/"
+actual val BaseURL = "https://santa.flagstudio.ru/api/"

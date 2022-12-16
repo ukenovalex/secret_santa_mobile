@@ -47,7 +47,6 @@ struct AuthView: View {
         .onChange(of: viewState.loginStatus) { status in
             if (status == LoginStatus.success) {
                 if (viewState.isUserExist == true) {
-                    pilot.popTo(.Auth, inclusive: true)
                     pilot.push(.TabNavigator)
                 } else {
                     pilot.push(.AuthInterests)
@@ -79,19 +78,4 @@ class AuthScreen_Previews: PreviewProvider {
         )
         AuthView(viewState: viewState) { event in }
     }
-    
-    #if DEBUG
-        @objc class func injected() {
-            let viewState = AuthState(
-                    email: "test@test.test",
-                    password: "",
-                    loginStatus: LoginStatus.success,
-                    validForm: false,
-                    isUserExist: false
-            )
-            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-            windowScene?.windows.first?.rootViewController =
-                    UIHostingController(rootView: AuthView(viewState: viewState) { event in })
-        }
-    #endif
 }
