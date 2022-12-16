@@ -56,7 +56,11 @@ struct InterestsView: View {
             Spacer()
             CommonButton(label: "Хочу",
                          disabled: false,
-                         action: {pilot.push(.Profile)}
+                         action: {
+                pilot.pop()
+                pilot.push(.TabNavigator)
+                
+            }
             )
         }
         .onAppear() {

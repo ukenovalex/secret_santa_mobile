@@ -7,30 +7,30 @@
 //
 
 import SwiftUI
-import UIPilot
 
 struct BottomNavBar: View {
-    let route: AppRoute
-    @EnvironmentObject var pilot: UIPilot<AppRoute>
+    let route: TabRoute
+    let navToRoure: (_ newRoute: TabRoute) -> Void
+    
     var body: some View {
         HStack {
             Spacer()
             Image("profile-nav-icon")
                 .foregroundColor(route == .Profile ? .AppGreen : .AppRed)
                 .onTapGesture {
-                    pilot.push(.Profile)
+                    navToRoure(.Profile)
                 }
             Spacer()
             Image("interest-nav-icon")
                 .foregroundColor(route == .ProfileInterests ? .AppGreen : .AppRed)
                 .onTapGesture {
-                    pilot.push(.ProfileInterests)
+                    navToRoure(.ProfileInterests)
                 }
             Spacer()
             Image("users-nav-icon")
                 .foregroundColor(route == .ProfileUsers ? .AppGreen : .AppRed)
                 .onTapGesture {
-                    pilot.push(.ProfileUsers)
+                    navToRoure(.ProfileUsers)
                 }
             Spacer()
         }

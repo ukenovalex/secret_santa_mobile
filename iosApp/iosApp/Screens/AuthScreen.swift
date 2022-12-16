@@ -48,7 +48,7 @@ struct AuthView: View {
             if (status == LoginStatus.success) {
                 if (viewState.isUserExist == true) {
                     pilot.popTo(.Auth, inclusive: true)
-                    pilot.push(.Profile)
+                    pilot.push(.TabNavigator)
                 } else {
                     pilot.push(.AuthInterests)
                 }

@@ -47,7 +47,7 @@ struct WelcomeView: View {
             }
             if (status == LoginStatus.success) {
                 pilot.popTo(.Welcome, inclusive: true)
-                pilot.push(.Profile)
+                pilot.push(.TabNavigator)
             }
         }
         .onTapGesture() {

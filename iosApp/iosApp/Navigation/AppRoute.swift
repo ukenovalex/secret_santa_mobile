@@ -19,10 +19,7 @@ enum AppRoute: Equatable {
     case Welcome
     case Auth
     case AuthInterests
-    case Profile
-    case ProfileInterests
-    case ProfileUsers
-
+    case TabNavigator
 
     var key: String {
         switch self {
@@ -32,12 +29,8 @@ enum AppRoute: Equatable {
             return "Auth"
         case .AuthInterests:
             return "AuthInterests"
-        case .Profile:
-            return "Profile"
-        case .ProfileInterests:
-            return "ProfileInterests"
-        case .ProfileUsers:
-            return "ProfileUsers"
+        case .TabNavigator:
+            return "TabNavigator"
         }
     }
 }
