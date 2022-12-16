@@ -16,6 +16,9 @@
 		6A85DC0829266B7F005A7AE3 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A85DC0729266B7F005A7AE3 /* ViewModel.swift */; };
 		6A85DC0B29269F3F005A7AE3 /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A85DC0A29269F3F005A7AE3 /* CommonTextField.swift */; };
 		6AA9F32F294BB2960037E103 /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9F32E294BB2960037E103 /* BindingTextField.swift */; };
+		6AA9F331294C40580037E103 /* BottomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9F330294C40580037E103 /* BottomNavBar.swift */; };
+		6AA9F333294C48380037E103 /* ProfileInterestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9F332294C48380037E103 /* ProfileInterestsScreen.swift */; };
+		6AA9F335294C48B20037E103 /* ProfileUsersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA9F334294C48B20037E103 /* ProfileUsersScreen.swift */; };
 		6AAE2BC7294B7B9B00C24FB0 /* InterestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE2BC6294B7B9B00C24FB0 /* InterestsScreen.swift */; };
 		6AAE2BCE294B85C400C24FB0 /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE2BCD294B85C400C24FB0 /* AppRoute.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
@@ -43,6 +46,9 @@
 		6A85DC0729266B7F005A7AE3 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		6A85DC0A29269F3F005A7AE3 /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
 		6AA9F32E294BB2960037E103 /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
+		6AA9F330294C40580037E103 /* BottomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavBar.swift; sourceTree = "<group>"; };
+		6AA9F332294C48380037E103 /* ProfileInterestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInterestsScreen.swift; sourceTree = "<group>"; };
+		6AA9F334294C48B20037E103 /* ProfileUsersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUsersScreen.swift; sourceTree = "<group>"; };
 		6AAE2BC6294B7B9B00C24FB0 /* InterestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsScreen.swift; sourceTree = "<group>"; };
 		6AAE2BCD294B85C400C24FB0 /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +116,7 @@
 				6A85DC0A29269F3F005A7AE3 /* CommonTextField.swift */,
 				ADC2DE98293B71B1000DCAA5 /* CommonButton.swift */,
 				6AA9F32E294BB2960037E103 /* BindingTextField.swift */,
+				6AA9F330294C40580037E103 /* BottomNavBar.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -190,6 +197,8 @@
 				AD667E56293B5EB300776536 /* UserProfileScreen.swift */,
 				C7EAB1E02941192000BCA4D9 /* WelcomeScreen.swift */,
 				6AAE2BC6294B7B9B00C24FB0 /* InterestsScreen.swift */,
+				6AA9F332294C48380037E103 /* ProfileInterestsScreen.swift */,
+				6AA9F334294C48B20037E103 /* ProfileUsersScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -353,12 +362,15 @@
 			files = (
 				AD667E55293B5E3D00776536 /* AuthScreen.swift in Sources */,
 				6AAE2BC7294B7B9B00C24FB0 /* InterestsScreen.swift in Sources */,
+				6AA9F331294C40580037E103 /* BottomNavBar.swift in Sources */,
 				6A85DC0629266A7B005A7AE3 /* Flow.swift in Sources */,
 				AD667E57293B5EB300776536 /* UserProfileScreen.swift in Sources */,
+				6AA9F335294C48B20037E103 /* ProfileUsersScreen.swift in Sources */,
 				AD667E52293B5C2200776536 /* Colors.swift in Sources */,
 				6AA9F32F294BB2960037E103 /* BindingTextField.swift in Sources */,
 				6AAE2BCE294B85C400C24FB0 /* AppRoute.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				6AA9F333294C48380037E103 /* ProfileInterestsScreen.swift in Sources */,
 				6A85DC0829266B7F005A7AE3 /* ViewModel.swift in Sources */,
 				C7EAB1E12941192000BCA4D9 /* WelcomeScreen.swift in Sources */,
 				ADC2DE99293B71B1000DCAA5 /* CommonButton.swift in Sources */,

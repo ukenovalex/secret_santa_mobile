@@ -1,8 +1,8 @@
 //
-//  InterestsScreen.swift
+//  ProfileInterestsScreen.swift
 //  iosApp
 //
-//  Created by Alex Ukenov on 15.12.2022.
+//  Created by Alex Ukenov on 16.12.2022.
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import SharedSDK
 import UIPilot
 
 
-struct InterestsView: View {
+struct ProfileInterestsView: View {
     let viewState: UserState
     let eventHandler: (UserEvent) -> Void
     @EnvironmentObject var pilot: UIPilot<AppRoute>
@@ -53,11 +53,6 @@ struct InterestsView: View {
                     }
                 }
             }
-            Spacer()
-            CommonButton(label: "Хочу",
-                         disabled: false,
-                         action: {pilot.push(.Profile)}
-            )
         }
         .onAppear() {
             eventHandler(.GetUserInfo())
@@ -66,12 +61,12 @@ struct InterestsView: View {
 }
 
 
-struct InterestsScreen: View {
+struct ProfileInterestsScreen: View {
     let viewModel = UserViewModel()
     
     var body: some View {
         ObservingView(statePublisher: statePublisher(viewModel.viewStates())) { viewState in
-            InterestsView(viewState: viewState){ event in
+            ProfileInterestsView(viewState: viewState){ event in
                 viewModel.obtainEvent(viewEvent: event)
             }
         }

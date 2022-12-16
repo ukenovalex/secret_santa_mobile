@@ -20,6 +20,8 @@ enum AppRoute: Equatable {
     case Auth
     case AuthInterests
     case Profile
+    case ProfileInterests
+    case ProfileUsers
 
 
     var key: String {
@@ -32,6 +34,10 @@ enum AppRoute: Equatable {
             return "AuthInterests"
         case .Profile:
             return "Profile"
+        case .ProfileInterests:
+            return "ProfileInterests"
+        case .ProfileUsers:
+            return "ProfileUsers"
         }
     }
 }
