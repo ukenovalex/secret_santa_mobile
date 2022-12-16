@@ -35,5 +35,6 @@ struct BottomNavBar: View {
             Spacer()
         }
         .frame(height: 50.0)
+        .background(Color.AppWhite)
     }
 }

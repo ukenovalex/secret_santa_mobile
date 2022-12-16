@@ -23,6 +23,7 @@ struct InterestsView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.AppWhite)
                 .font(.custom("InriaSans-Bold", size: 36))
+                .padding(.horizontal, 16)
             Spacer()
             BindingTextField(
                 currentValue: viewState.currentWishValue,
@@ -35,7 +36,7 @@ struct InterestsView: View {
             .padding(.bottom, 20)
             Spacer()
             CommonButton(label: "Добавить",
-                         disabled: false,
+                         disabled: viewState.currentWishValue.count == 0,
                          action: {eventHandler(.AddWish())})
             Spacer()
             HStack {
@@ -54,14 +55,18 @@ struct InterestsView: View {
                 }
             }
             Spacer()
-            CommonButton(label: "Хочу",
-                         disabled: false,
-                         action: {
-                pilot.pop()
-                pilot.push(.TabNavigator)
-                
+            VStack {
+                CommonButton(label: "Хочу",
+                             disabled: false,
+                             action: {
+                    pilot.pop()
+                    pilot.push(.TabNavigator)
+                    
+                }
+                )
+                Spacer().frame(height: 40.0)
             }
-            )
+            
         }
         .onAppear() {
             eventHandler(.GetUserInfo())

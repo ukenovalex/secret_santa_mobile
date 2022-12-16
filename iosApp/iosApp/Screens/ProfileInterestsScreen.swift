@@ -23,6 +23,7 @@ struct ProfileInterestsView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.AppWhite)
                 .font(.custom("InriaSans-Bold", size: 36))
+                .padding(.horizontal, 16)
             Spacer()
             BindingTextField(
                 currentValue: viewState.currentWishValue,

@@ -18,13 +18,17 @@ struct TabNavigator: View {
     }
     
     var body: some View {
-        switch currentRoute {
-        case .Profile: UserProfileScreen()
-        case .ProfileUsers: ProfileUsersScreen()
-        case .ProfileInterests: ProfileInterestsScreen()
-        }
-        BottomNavBar(route: currentRoute) {newRoute in
-            navToRoute(route: newRoute)
-        }
+        VStack {
+            switch currentRoute {
+            case .Profile: UserProfileScreen()
+            case .ProfileUsers: ProfileUsersScreen()
+            case .ProfileInterests: ProfileInterestsScreen()
+            }
+            Spacer()
+            BottomNavBar(route: currentRoute) {newRoute in
+                navToRoute(route: newRoute)
+            }
+        }.background(Color.AppRed)
+        
     }
 }
