@@ -26,8 +26,8 @@ struct WelcomeView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack() {
                 Spacer()
-                Text("Ho Ho Ho! You little bitch!")
-                    .font(.custom("Pacifico", size: 48))
+                Text("Ho Ho Ho! Merry Christmas!")
+                    .font(.custom("Pacifico", size: 36))
                     .multilineTextAlignment(.center)
                     .rotationEffect(Angle(degrees: -5))
                     .padding(.bottom, 50)

@@ -20,26 +20,26 @@ struct AuthView: View {
     var body: some View {
         MainTemplate() {
             Spacer()
-            Text("Introduce yourself, naughty kid!")
+            Text("Добро пожаловать, санта-малютка!")
                 .multilineTextAlignment(.center)
                 .foregroundColor(.AppWhite)
                 .font(.custom("InriaSans-Bold", size: 36))
             Spacer()
             CommonTextField(label: "Email",
-                            hint: "example@gmail.com",
+                            hint: "example@flagstudio.ru",
                             enabled: true,
                             isSecure: false) { newValue in
                     eventHandler(.InputEmail(value: newValue))
                 }
             .padding(.bottom, 20)
-            CommonTextField(label: "Password",
-                            hint: "",
+            CommonTextField(label: "Пароль:",
+                            hint: "Твой секретик...",
                             enabled: true,
                             isSecure: true) { newValue in
                 eventHandler(.InputPassword(value: newValue))
             }
             Spacer()
-            CommonButton(label: "Done",
+            CommonButton(label: "Войти",
                          disabled: !viewState.validForm,
                          action: {eventHandler(.PressLogin())})
             Spacer()
