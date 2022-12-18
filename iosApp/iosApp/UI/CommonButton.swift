@@ -30,7 +30,7 @@ struct CommonButton: View {
             .foregroundColor(.AppWhite)
             .padding(.vertical, 10)
             .padding(.horizontal, 50)
-            .background(disabled ? Color.AppGray.cornerRadius(10) : Color.AppRed.cornerRadius(10))
+            .background(disabled ? Color.AppGray.cornerRadius(10) : Color.AppGreen.cornerRadius(10))
             .disabled(disabled)
     }
 }

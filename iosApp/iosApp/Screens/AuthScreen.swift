@@ -44,13 +44,12 @@ struct AuthView: View {
                          action: {eventHandler(.PressLogin())})
             Spacer()
         }
-        .onChange(of: viewState.loginStatus) { status in
-            if (status == LoginStatus.success) {
-                if (viewState.isUserExist == true) {
-                    pilot.push(.TabNavigator)
-                } else {
-                    pilot.push(.AuthInterests)
-                }
+        .onChange(of: viewState) { newState in
+            if (newState.loginStatus == LoginStatus.success && newState.isUserExist) {
+                pilot.push(.TabNavigator)
+            }
+            if (newState.loginStatus == LoginStatus.success && !newState.isUserExist) {
+                pilot.push(.AuthInterests)
             }
         }
     }

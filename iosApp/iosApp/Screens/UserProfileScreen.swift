@@ -32,7 +32,7 @@ struct UserView: View {
                         .foregroundColor(.AppWhite)
                         .font(.custom("InriaSans-Bold", size: 36))
                         .padding(.horizontal, 16)
-                    Spacer()
+                    Spacer().frame(height: 54)
                     if (!viewState.isSanta) {
                         CommonButton(label: "Стать Сантой", disabled: false) {
                             eventHandler(.BecomeSanta())
@@ -43,12 +43,36 @@ struct UserView: View {
                             .foregroundColor(.AppWhite)
                             .font(.custom("Pacifico", size: 24))
                             .padding(.horizontal, 16)
+                            .padding(.vertical, 16)
                         Text(viewState.giftedName ?? "Неизвестно")
                             .multilineTextAlignment(.center)
                             .foregroundColor(.AppWhite)
                             .font(.custom("Pacifico", size: 36))
                             .padding(.horizontal, 16)
+                            .padding(.vertical, 16)
                             .rotationEffect(Angle(degrees: -3.92))
+                        if (viewState.giftedWishList.count > 0) {
+                            Text("Что хочет твой малыш:")
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.AppWhite)
+                                .font(.custom("InriaSans-Bold", size: 18))
+                                .frame(width: .infinity)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 16)
+                        }
+                        ScrollView {
+                            if (viewState.giftedWishList.count > 0) {
+                                CustomFlexBoxView(alignment: .leading, spacing: 14.0, items: viewState.giftedWishList) {index in
+                                    Text(viewState.giftedWishList[index])
+                                    .foregroundColor(.AppRed)
+                                    .font(.custom("Roboto-Medium", size: 16))
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 13)
+                                    .background(Color.AppWhite.cornerRadius(20))
+                                }
+                                .padding(.leading, 16.0)
+                            }
+                        }.frame(height: .infinity)
                     }
                     Spacer()
                 }

@@ -8,54 +8,47 @@
 
 import SwiftUI
 import SharedSDK
-import UIPilot
+
 
 
 struct ProfileUsersView: View {
     let viewState: UserState
     let eventHandler: (UserEvent) -> Void
-    @EnvironmentObject var pilot: UIPilot<AppRoute>
+
     
     var body: some View {
         MainTemplate() {
-            Spacer()
-            Text("Скажи, что ты хочешь от санты?")
+            Text("Малыши и санты")
                 .multilineTextAlignment(.center)
                 .foregroundColor(.AppWhite)
-                .font(.custom("InriaSans-Bold", size: 36))
-            Spacer()
-            BindingTextField(
-                currentValue: viewState.currentWishValue,
-                label: "Хочу",
-                            hint: "Название подарка",
-                            enabled: true,
-                            isSecure: false) { newValue in
-                eventHandler(.InputWish(value: newValue))
-                }
-            .padding(.bottom, 20)
-            Spacer()
-            CommonButton(label: "Добавить",
-                         disabled: false,
-                         action: {eventHandler(.AddWish())})
-            Spacer()
-            HStack {
-                if (viewState.wishes != nil) {
-                    ForEach(0..<viewState.wishes!.count,id: \.self) { index in
-                        Text(viewState.wishes![index].message).onTapGesture {
-                            eventHandler(.RemoveWish(id: viewState.wishes![index].id))
+                .font(.custom("Pacifico", size: 24))
+                .padding(.horizontal, 16)
+                .padding(.vertical, 16)
+            ScrollView {
+                ForEach(0..<viewState.users.count, id: \.self) {index in
+                    HStack {
+                        Text(viewState.users[index].name)
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(.AppWhite)
+                            .font(.custom("InriaSans-Regular", size: 16))
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        if (viewState.users[index].isSanta) {
+                            Image("santa-logo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 30, height: 30)
                         }
-                        .foregroundColor(.AppRed)
-                        .font(.custom("Roboto-Medium", size: 16))
+                    }.padding(.horizontal, 8)
                         .padding(.vertical, 8)
-                        .padding(.horizontal, 13)
-                        .background(Color.AppWhite.cornerRadius(20))
-                        
-                    }
+                    
+                    Divider().overlay(Color.AppWhite)
                 }
             }
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+            .frame(minHeight: 0, maxHeight: .infinity)
         }
         .onAppear() {
-            eventHandler(.GetUserInfo())
+            eventHandler(.GetAllUsers())
         }
     }
 }
