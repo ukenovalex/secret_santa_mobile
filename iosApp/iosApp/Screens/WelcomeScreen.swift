@@ -38,7 +38,7 @@ struct WelcomeView: View {
             }
             .foregroundColor(.AppRed)
             .padding(.horizontal, 24)
-            .padding(.bottom, 64)
+            .padding(.bottom, 120)
         }
         .onChange(of: viewState.loginStatus) { status in
             if (status == LoginStatus.notVerified) {
